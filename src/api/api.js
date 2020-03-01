@@ -23,6 +23,7 @@ export const getCategory = params => {
 };
 
 
+
 //获取热门搜索关键词
 export const getHotSearch = params => { return axios.get(`${host}/hotsearchs/`) }
 

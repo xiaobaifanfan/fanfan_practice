@@ -187,7 +187,9 @@ Mock.mock('/product/list', // 商品列表
                 imgurl: 'http://sx.youxueshop.com/images/201512/thumb_img/2_thumb_G_1448945810147.jpg',
                 productname: '新鲜水果甜蜜香脆单果约800克',
                 description: '食用百香果可以增加胃部饱腹感，减少余热量的摄入，还可以吸附胆固醇和胆汁之类有机分子，抑制人体对脂肪的吸收。因此，长期食用有利于改善人体营养吸收结构，降低体内脂肪，塑造健康优美体态。',
-                price: '￥156元',
+
+                price: '￥1506元',
+
                 sales: 1000
             },
             {

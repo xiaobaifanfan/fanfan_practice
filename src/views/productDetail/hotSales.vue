@@ -8,7 +8,9 @@
             <li v-for="item in hotProduct">
               <router-link :to="'/app/home/productDetail/'+item.id">
                 <img width="194px" height="194px" :src="item.goods_front_image">
-                <p>{{item.goods_brief}}</p>
+
+                <p>{{item.goods_brief}}热卖商品</p>
+
                 <p class="hot_price">￥{{item.shop_price}}元</p>
               </router-link>
             </li>

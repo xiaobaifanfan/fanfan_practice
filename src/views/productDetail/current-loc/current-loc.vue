@@ -4,23 +4,28 @@
           <div class="menus">
             <a href="http://sx.web51.youxueshop.com/">首页</a>
             <code>&gt;</code>
-            <a href="http://sx.web51.youxueshop.com/category.php?id=2">生鲜食品</a>
+            <a href="http://sx.web51.youxueshop.com/category.php?id=2">{{proSecondCategory}}</a>
             <code>&gt;</code>
-            <a href="http://sx.web51.youxueshop.com/category.php?id=19">根茎类</a>
-            <code>&gt;</code>
-            新鲜水果甜蜜香脆单果约800克
+            {{proThirdCategory}}
           </div>
       </div>
     
     </div>
   
 </template>
-<script>
-  
-  export default {
+<script> 
+import { mapGetters } from 'vuex';
+import { getGoodsDetail,getCategory } from '../../../api/api';
+
+export default {
     data () {
         return {
-            
+            category_id:'',
+            itemGood:'',
+            productId:'',
+            protitle:'',
+            proThirdCategory:'',
+            proSecondCategory:''
         };
     },
     components: {
@@ -30,10 +35,34 @@
         
     },
     created () {
-        
+
+       this.productId=this.$route.params.productId;
+       getGoodsDetail(this.productId)
+            .then((response)=> {
+                console.log(response.data);
+                this.itemGood=response.data;
+                this.category_id=this.itemGood.category.id;  
+                //this.proSecondCategory=
+                getCategory(this.category_id).then((response)=> {
+                console.log(response.data);
+                console.log("申请目录")
+            }).catch(function (error) {
+                console.log("搜寻二级目录失败")
+                console.log(error);
+            });
+               // console.log(this.proSecondCagegory);
+                //this.protitle=response.data.name;
+              
+            }).catch(function (error) {
+                console.log(error);
+            });
+
     },
     watch: {
-        
+        '$route'(to,from){
+                    //发送Ajax请求
+                    this.mes=to.params.id;
+                }
     },
     computed: {
 

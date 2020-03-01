@@ -1,18 +1,22 @@
 <template>
     <div>
-       <current-loc></current-loc>
+
+       <current-loc style="border:2px solid pink;"></current-loc>
         <!--商品详情页上方-->
         <div class="detail cle z-detail-box">
             <div class="detail_wrap">
-                <div class="detail_img" id="detail_img">
-                    <div class="pic_view">
+                <div class="detail_img" id="detail_img" style="border:2px solid orange;">
+                    <div class="pic_view" style="border:2px solid red;">
+
                         <a class="MagicZoomPlus" id="Zoomer" style="position: relative; display: inline-block; text-decoration: none; outline: 0px; overflow: hidden; width: auto; height: auto;">
                             <img :src="curShow.image" alt="" style="opacity: 1;">
                             <div class="MagicZoomPup" style="z-index: 10; position: absolute; overflow: hidden;  visibility: hidden; width: 190px; height: 190px; opacity: 0.5;"></div>
                             <div class="MagicZoomPlusHint" style="display: block; overflow: hidden; position: absolute; visibility: visible; z-index: 1; left: 2px; right: auto; top: 2px; bottom: auto; opacity: 0.75; max-width: 376px;"></div>
                         </a>
                     </div>
-                    <div class="item-thumbs" id="item-thumbs">
+
+                    <div class="item-thumbs" id="item-thumbs" style="border:2px solid black;">
+>
                         <a class="prev" href="javascript:void(0);" @click="ImagePrev"></a>
                         <a class="next" href="javascript:void(0);" @click="ImageNext"></a>
                         <div class="bd">
@@ -29,7 +33,9 @@
 
                     </div>
                 </div>
-                <div class="item-info" id="item-info">
+
+                <div class="item-info" id="item-info" style="border:2px solid blue;">
+
                     <dl class="loaded">
                         <dt class="product_name">
                         <h1>{{proDetail.name}}</h1>
@@ -80,9 +86,11 @@
         </div>
 
         <!--商品详情页下方-->
-        <div class="detail_bgcolor">
+
+        <div class="detail_bgcolor" style="border:2px solid blue;">
             <div class="z-detail-box cle">
-                <div class="z-detail-left">
+                <div class="z-detail-left" style="border:2px solid yellow;">
+
                     <div class="taocan_bd">
                         <div class="product_tabs">
                             <div class="sectionbox z-box" id="spxqitem">
@@ -92,7 +100,9 @@
                                             <table>
                                                 <tbody>
                                                 <tr>
-                                                    <td width="20%" class="th"> 产品名称 :</td>
+
+                                                    <td width="20%" class="th">产品名称 :</td>
+
                                                     <td width="80%"> {{proDetail.name}}</td>
                                                 </tr>
                                                 </tbody>
@@ -111,6 +121,9 @@
                 </div>
                 <!-- 热卖商品 -->
                 <hot-sales></hot-sales>
+
+                <moreDetail/>
+
             </div>
         </div>
         <model ref="model"></model>
@@ -120,7 +133,8 @@
 import cookie from '../../static/js/cookie';
 import currentLoc from './current-loc/current-loc';
 import hotSales from './hotSales';
-import model from './model'
+import model from './model';
+import moreDetail from './moreDetail';
 import { mapGetters } from 'vuex';
 import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from '../../api/api';
   export default {
@@ -141,6 +155,7 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
     components: {
         'current-loc': currentLoc,
         'hot-sales': hotSales,
+        'moreDetail':moreDetail,
          model
     },
     props: {
@@ -217,6 +232,9 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
             // });
         },
         addCollect () { //加入收藏
+
+            console.log("加入收藏")
+
           addFav({
               goods: this.productId
           }).then((response)=> {
@@ -237,15 +255,20 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
             console.log(error);
           });
         },
-        ImagePrev () {
-            this.curIndex = this.curIndex === 0 ? 0 : this.curIndex - 1;
-        },
-        ImageNext () {
-            this.curIndex = this.curIndex === this.proDetail.detailImages.length - 1 ? this.proDetail.detailImages.length - 1 : this.curIndex + 1;
-        },
+
         replaceShow (index, item) {
             this.curIndex = index;
             this.curShow = item;
+        },
+        ImagePrev () {
+            this.curIndex = this.curIndex === 0 ? 0 : this.curIndex - 1;
+            this.curShow=this.proDetail.images[this.curIndex];
+            
+
+        },
+        ImageNext () {
+            this.curIndex = this.curIndex === this.proDetail.images.length - 1 ? this.proDetail.images.length - 1 : this.curIndex + 1;
+         this.curShow=this.proDetail.images[this.curIndex];
         }
     }
 }
@@ -570,6 +593,8 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
     width:970px;
     float:left;
     background-color:#fff
+
+
 }
 
 

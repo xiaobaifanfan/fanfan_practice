@@ -1,5 +1,6 @@
 <template>
     <div class="sidebar">
+<<<<<<< HEAD
         <div class="cate-menu" id="cate-menu">
             <h3><a href=""><strong>生鲜食品</strong><i id="total_count">商品共14件</i></a></h3>
             <dl>
@@ -12,11 +13,15 @@
                 
             </dl>
         </div>
+=======
+     
+>>>>>>> newbranch
     
     </div>
   
 </template>
 <script>
+<<<<<<< HEAD
   export default {
     data() {
         return {
@@ -152,6 +157,12 @@
 }
 </script>
 <style >
+=======
+  
+</script>
+<style >
+
+>>>>>>> newbranch
 html {
     background:#fafafa;
     color:#333;
@@ -238,7 +249,11 @@ a {
     transition:color .2s
 }
 a:hover {
+<<<<<<< HEAD
     color:#09c762
+=======
+    color:#09c762;
+>>>>>>> newbranch
 }
 a:focus,area:focus {
     outline:0
@@ -273,3 +288,8 @@ canvas {
 .cate-menu dd.current a,.cate-menu dd.current a:hover{color:#09c762;background-color:#f1f1f1}
 
 </style>
+<<<<<<< HEAD
+=======
+
+</style>
+>>>>>>> newbranch
