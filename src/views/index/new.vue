@@ -11,7 +11,7 @@
             </h2>
             <ul class="newgoods_fastbuy">
                 <li class="prolist-cent clearfix have_num" v-for="item in newopro">
-                    <div class="prolist-l fl">
+                    <div class="prolist-l fl" >
                     <router-link :to="'/app/home/list/'+item.id"  target = _blank> <a  :title="item.name" class="imgBox">
                     <img :src="item.goods_front_image" style="height: 158px;width: 158px;" class="zom" :alt="item.name">
                     </a></router-link>
@@ -22,7 +22,7 @@
                         </h3>
                         <p><em class="c333"></em>{{item.goods_brief}}</p><div>
                         <span class="p-price"><em class="fastbuy_price">￥{{item.shop_price}}元</em><del>原价:￥{{item.market_price}}元</del></span>
-                        <a href="" class="p-buy fr ibg">立即抢购</a>
+                        <a href="#/app/home/list/+item.id" class="p-buy fr ibg">立即抢购&nbsp></a>
                         <span class="p-time fr">销量：{{item.sold_num}}件</span>
                     </div>
                     </div>
@@ -46,10 +46,11 @@ export default{
     methods:{
         getOpro(){
           getGoods({
-            "is_new":"true"
+            is_new:true
           })
             .then((response)=> {
-               //跳转到首页页response.body面
+               //跳转到首页的response.body里面
+               console.log(response);
                 this.newopro = response.data.results
             })
             .catch(function (error) {
@@ -194,10 +195,16 @@ canvas {
 .p-price em{font-size: 28px;margin-right: 10px;}
 .p-time .ibg{ width: 17px; height: 17px; background-position: 0 -17px; margin-right: 5px;}
 .ibg{
-/* background: url(images/indexico.png) no-repeat;*/
-  display: inline-block;}
-.p-buy:hover{color: #fff;}
-.p-buy{width: 188px; height: 56px; line-height: 56px; color: #fff; font-weight:bold; font-size: 18px; text-indent: 78px; background-position: 0 -36px; margin-left: 25px;}
+  display: inline-block;
+  }
+.p-buy{width: 188px; height: 56px; line-height: 56px; color:green;; font-weight:bold; font-size: 18px; text-align:center; background-position: 0 -36px; margin-left: 25px;
+border:2px solid green;
+border-radius:20px;
+}
+.ibg:hover{
+    background:#39bf3e;
+    color:white;
+}
 .p-buy:hover{text-decoration: none;}
 
 </style>

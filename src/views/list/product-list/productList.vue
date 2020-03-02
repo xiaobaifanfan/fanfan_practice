@@ -11,12 +11,14 @@
                         ￥{{item.shop_price}}元
                         </b>
                     </span>
-                    <span class="productname">{{item.name}}</span>
-                    <span class="description">{{item.goods_brief}}</span>
-                    <!-- <span class="price">{{item.price}}</span> -->
-                    <span class="salerow">销量：<span class="sales">{{item.sold_num}}</span>件 </span>
+                    <span class="productname hidebtn">{{item.name}}</span>
+                    <span class="description hidebtn">{{item.goods_brief}}</span>
+                    <span class="price hidebtn">{{item.price}}</span> 
+                    <span class="salerow hidebtn">销量：<span class="sales">{{item.sold_num}}</span>件 </span>
+                <div class="hidebtm">查看详情>></div>
                 </router-link>
-                <!--<a class="addcart" target="_blank" rel="nofollow" @click="addShoppingCart">加入购物车</a>-->
+                
+                
             </li>
         </ul>
     <br clear="all">
@@ -48,27 +50,12 @@
 
         },
         methods: {
-            addShoppingCart () { //加入购物车
-
-                this.$http.post('/product/addShoppingCart', {
-                    params: {
-                        productId: this.productId, // 商品id
-                        num: this.proDetail.purNum, // 购买数量
-                    }
-                }).then((response)=> {
-                    console.log(response.data);
-                    alert('已成功加入购物车');
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            },
-            // toProductDetail(id) {
-            //     this.$router.push({name:'productDetail', params: {productId: id}});
-            // }
+            
         }
     }
 </script>
 <style scoped>
+
 html {
 
     color:#333;
@@ -88,37 +75,12 @@ address,cite,dfn,em,var,i {
 ul,ol {
     list-style:none
 }
+
 fieldset,img {
     border:0
 }
-h1 {
-    font-size:18px
-}
-h2 {
-    font-size:14px;
-    font-weight:bold
-}
-h3 {
-    font-size:14px;
-    font-weight:400
-}
-h4,h5 {
-    font-size:12px;
-    font-weight:400
-}
-input,textarea,button,select {
-    font-size:12px;
-    outline:0;
-    resize:none;
-    color:#333
-}
-button {
-    cursor:pointer
-}
-table {
-    border-collapse:collapse;
-    border-spacing:0
-}
+
+
 .clear {
     clear:both;
     height:0;
@@ -175,7 +137,8 @@ a.productitem {
     border:1px solid #eee;
     padding-bottom:8px;
     position:relative;
-    overflow:hidden
+    overflow:hidden;
+    box-sizing:border-box;
 }
 a.productitem span {
     padding:0 10px
@@ -193,7 +156,7 @@ a.productitem span.productimg img {
 a.productitem span.nalaprice {
     color:#09c762;
     font-size:14px;
-    display:block
+    display:block;
 }
 a.productitem span.productname {
     display:block;
@@ -217,20 +180,39 @@ a.productitem span.sales {
     padding:0 2px
 }
 a.productitem span.xszk {
-    padding-left:55px;
+    padding-left:85px;
     /*background:url(images/xsdz-ico.png?0226) 10px center no-repeat*/
 }
 a.productitem span.price {
-    display:none
+    display:block;
 }
 a.productitem:hover {
     text-decoration:none;
-    border-color:#09c762
+    border:2px solid #09c762;
+}
+a.productitem:hover .hidebtm{
+    display:block;
+}
+a.productitem:hover .hidebtn{
+    display:none;
 }
 
+.hidebtm{
+    background:#09c762;
+    color:white;
+    font-weight:bold;
+    height:80px;
+    display:none;
+    margin-bottom:0px;
+    text-align:center;
+    line-height:80px;
+    font-size:16px;
+}
 .productlist{width:970px;overflow:hidden}
 .productlist ul{margin-right:-20px}
 .productlist li{width:232px;height:342px;position:relative;float:left;margin:0 14px 14px 0;overflow:hidden;display:inline}
 .productlist li a.productitem span.productimg img{width:230px;height:230px}
 
 </style>
+
+

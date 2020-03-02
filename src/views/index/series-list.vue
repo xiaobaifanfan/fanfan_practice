@@ -38,7 +38,7 @@
                                  </p>
                                 <h3>{{list.name}}</h3>
                                 <p class="price">
-                                    ￥{{list.shop_price}}元
+                                    ￥{{list.shop_price}}
                                 </p>
                             </router-link>
                          </li>
@@ -62,7 +62,6 @@
               queryCategorygoods()
                 .then((response)=> {
                    //跳转到首页页response.body面
-                  console.log(response)
                     this.list = response.data
                 })
                 .catch(function (error) {

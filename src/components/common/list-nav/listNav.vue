@@ -1,168 +1,19 @@
 <template>
     <div class="sidebar">
-<<<<<<< HEAD
-        <div class="cate-menu" id="cate-menu">
-            <h3><a href=""><strong>生鲜食品</strong><i id="total_count">商品共14件</i></a></h3>
-            <dl>
-                <template v-for="item in cateMenu">
-                    <dt>{{ item.name }}</dt>
-                    <dd v-for="subItem in item.children">
-                        <a href="http://sx.web51.youxueshop.com/category.php?id=73">{{ subItem.name}}</a>
-                    </dd>
-                </template>
-                
-            </dl>
-        </div>
-=======
+
      
->>>>>>> newbranch
+
     
     </div>
   
 </template>
 <script>
-<<<<<<< HEAD
-  export default {
-    data() {
-        return {
-            cateMenu: [
-                {
-                    id: 123,
-                    name: '精品肉类',
-                    link: '',
-                    children: [
-                        {
-                            id: 111,
-                            name: '羊肉',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '牛肉',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '猪肉',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '鸡肉',
-                            link: ''
-                        },
 
-                    ]
-                },
-                {
-                    id: 123,
-                    name: '海鲜水产',
-                    link: '',
-                    children: [
-                        {
-                            id: 111,
-                            name: '鱼',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '虾',
-                            link: ''
-                        }
-
-                    ]
-                },
-                {
-                    id: 123,
-                    name: '精品肉类',
-                    link: '',
-                    children: [
-                        {
-                            id: 111,
-                            name: '羊肉',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '牛肉',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '猪肉',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '鸡肉',
-                            link: ''
-                        },
-
-                    ]
-                },
-                {
-                    id: 123,
-                    name: '叶菜类',
-                    link: '',
-                    children: [
-                        {
-                            id: 111,
-                            name: '生菜',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '菠菜',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '圆椒',
-                            link: ''
-                        },
-                        {
-                            id: 111,
-                            name: '西兰花',
-                            link: ''
-                        },
-
-                    ]
-                },
-                {
-                    id: 123,
-                    name: '叶菜类',
-                    link: ''
-                },
-            ]
-        };
-    },
-    components: {
-        
-    },
-    props: {
-        
-    },
-    created () {
-        
-    },
-    watch: {
-        
-    },
-    computed: {
-
-    },
-    methods: {
-        
-    }
-}
-</script>
-<style >
-=======
   
 </script>
 <style >
 
->>>>>>> newbranch
+
 html {
     background:#fafafa;
     color:#333;
@@ -288,8 +139,6 @@ canvas {
 .cate-menu dd.current a,.cate-menu dd.current a:hover{color:#09c762;background-color:#f1f1f1}
 
 </style>
-<<<<<<< HEAD
-=======
 
-</style>
->>>>>>> newbranch
+
+
