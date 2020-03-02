@@ -25,14 +25,14 @@
             </div>
                 <div class="series_pic">
                     <router-link :to="'/app/home/productDetail/'+items.ad_goods.id" target = _blank>
-                       <img :src="items.ad_goods.goods_front_image" width="340" height="400">
+                       <img :src="items.ad_goods.goods_front_image" width="340" height="400" >
                     </router-link>
                 </div>
 
                 <div class="pro_list">
                     <ul class="cle">
                         <li v-for="list in items.goods">
-                             <router-link :to="'/app/home/productDetail/'+list.id" target = _blank>
+                             <router-link :to="'/app/home/productDetail/'+list.id" target = _blank >
                                 <p class="pic">
                                  <img :src="list.goods_front_image" style="display: inline;">
                                  </p>
@@ -190,6 +190,7 @@ canvas {
     float:right;
     border:1px solid #ccc
 }
+
 .series_list .pro_list ul {
     margin-right:-30px;
     zoom:1
@@ -212,6 +213,7 @@ canvas {
     height:120px;
     vertical-align:top
 }
+
 .series_list .pro_list li h3 {
     color:#666;
     height:18px;
@@ -228,9 +230,11 @@ canvas {
     text-decoration:none
 }
 .series_list .pro_list li a:hover img {
-    opacity:.7;
-    filter:Alpha(opacity=70)
+    opacity:0.7;
+     -webkit-transform:scale(1.1)
+    //filter:Alpha(opacity=70)
 }
+
 .series_box {
     margin-bottom:30px;
     background-color:#fff

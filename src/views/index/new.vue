@@ -9,7 +9,8 @@
                 <em class="ft18 c000">刚出炉新品</em>
                 <router-link to="/app/home/list/more" target = _blank><a  class="fr c666">更多&gt;&gt;</a></router-link>
             </h2>
-            <ul class="newgoods_fastbuy">
+            <ul>
+                <marquee direction=up behavior="scroll" scrolldelay="100"  id="newgoods_fastbuy" onmouseover="stop()"onmouseout="start()">
                 <li class="prolist-cent clearfix have_num" v-for="item in newopro">
                     <div class="prolist-l fl" >
                     <router-link :to="'/app/home/list/'+item.id"  target = _blank> <a  :title="item.name" class="imgBox">
@@ -27,16 +28,19 @@
                     </div>
                     </div>
                 </li>
+                </marquee>
             </ul>
         </div>
     </div>
+     
+左右滚动：
+<marquee direction="up" behavior="alternate"><font size=30 color="red">我会左右滚动哦</font></marquee> 
 </div>
 
-</div>
 
 </template>
 <script>
-  import { getGoods } from '../../api/api';
+import {getGoods} from '../../api/api';
 export default{
     data(){
         return {
@@ -46,7 +50,7 @@ export default{
     methods:{
         getOpro(){
           getGoods({
-            is_new:true
+            is_new:false
           })
             .then((response)=> {
                //跳转到首页的response.body里面
@@ -206,5 +210,8 @@ border-radius:20px;
     color:white;
 }
 .p-buy:hover{text-decoration: none;}
-
+#newgoods_fastbuy{
+    height:400px;
+    //border:2px solid red;
+}
 </style>
