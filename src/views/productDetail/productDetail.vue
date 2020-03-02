@@ -182,7 +182,7 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
         getDetails () { //  请求商品详情
           getGoodsDetail(this.productId)
             .then((response)=> {
-                console.log(response.data);
+                //console.log(response.data);
                 this.proDetail = response.data;
                 this.curShow = this.proDetail.images[0];
             }).catch(function (error) {
@@ -201,6 +201,7 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
         // 增加数量
         addNum () {
             this.buyNum = this.buyNum + 1;
+           
 
         },
         addShoppingCart () { //加入购物车

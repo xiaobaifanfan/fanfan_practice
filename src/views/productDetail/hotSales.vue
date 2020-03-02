@@ -45,7 +45,7 @@
                 is_hot:true
               })
                 .then((response)=> {
-                    console.log(response.data+"热卖商品")
+                    //console.log(response.data+"热卖商品");
                     this.hotProduct = response.data.results;
 
                 }).catch(function (error) {

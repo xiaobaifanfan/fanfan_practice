@@ -213,13 +213,14 @@ export default {
           getCategory({
             params:{}
           }).then((response)=> {
-                    console.log(response)
+                    //console.log(response)
                     this.allMenuLabel = response.data
                 })
                 .catch(function (error) {
                   console.log(error);
                 });
         },
+        
         getHotSearch(){//获取热搜
           getHotSearch()
                 .then((response)=> {

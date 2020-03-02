@@ -1,12 +1,14 @@
 <template>
     <div class="current-loc">
-        <div class="breadcrumbs cle z-detail-box">
+        <div class="breadcrumbs cle z-detail-box" >
           <div class="menus">
-            <a href="http://sx.web51.youxueshop.com/">首页</a>
+            <a href="">{{proFirstCategory}}</a>
             <code>&gt;</code>
-            <a href="http://sx.web51.youxueshop.com/category.php?id=2">{{proSecondCategory}}</a>
+            <a href="">{{proSecondCategory}}</a>
             <code>&gt;</code>
             {{proThirdCategory}}
+            <code>&gt;</code>
+            {{proTitle}}
           </div>
       </div>
     
@@ -15,7 +17,8 @@
 </template>
 <script> 
 import { mapGetters } from 'vuex';
-import { getGoodsDetail,getCategory } from '../../../api/api';
+import { getGoodsDetail,getCategory,queryCategorygoods} from '../../../api/api';
+
 
 export default {
     data () {
@@ -23,9 +26,11 @@ export default {
             category_id:'',
             itemGood:'',
             productId:'',
-            protitle:'',
-            proThirdCategory:'',
-            proSecondCategory:''
+            proTitle:'',
+            proFirstCategory:'',
+            proSecondCategory:'',
+            proThirdCategory:''
+            
         };
     },
     components: {
@@ -39,24 +44,33 @@ export default {
        this.productId=this.$route.params.productId;
        getGoodsDetail(this.productId)
             .then((response)=> {
-                console.log(response.data);
                 this.itemGood=response.data;
-                this.category_id=this.itemGood.category.id;  
-                //this.proSecondCategory=
-                getCategory(this.category_id).then((response)=> {
-                console.log(response.data);
-                console.log("申请目录")
-            }).catch(function (error) {
-                console.log("搜寻二级目录失败")
+                console.log(this.itemGood);
+                this.proTitle=this.itemGood.name;
+                this.proThirdCategory=this.itemGood.category.name;
+                this.category_id=this.itemGood.category.id; 
+                }).catch(function (error) {
                 console.log(error);
             });
-               // console.log(this.proSecondCagegory);
-                //this.protitle=response.data.name;
-              
-            }).catch(function (error) {
+            //打印所有一级目录
+         getCategory({params:{}}).then((response)=>{
+         //console.log(response);
+         //console.log("打印所有一级目录")
+         }).catch(error=>{
                 console.log(error);
-            });
-
+         });
+            //查询指定的id的一级目录。二级三级无法查询       
+        getCategory({
+        id:this.category_id
+        }).then((res)=>{
+        //console.log(res);
+        //console.log("指定的商品类别:"+this.category_id)
+        }).catch((error)=>{
+        console.log(error);
+        });
+         
+        
+        
     },
     watch: {
         '$route'(to,from){
