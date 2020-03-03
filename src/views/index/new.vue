@@ -31,13 +31,8 @@
                 </marquee>
             </ul>
         </div>
+        </div>
     </div>
-     
-左右滚动：
-<marquee direction="up" behavior="alternate"><font size=30 color="red">我会左右滚动哦</font></marquee> 
-</div>
-
-
 </template>
 <script>
 import {getGoods} from '../../api/api';

@@ -7,7 +7,7 @@
         <ul>
             <li v-for="item in hotProduct">
               <router-link :to="'/app/home/productDetail/'+item.id">
-                <img width="194px" height="194px" :src="item.goods_front_image">
+                <img width="140px" height="140px" :src="item.goods_front_image">
 
                 <p>{{item.goods_brief}}热卖商品</p>
 
@@ -42,10 +42,10 @@
         methods: {
             getHotSales() { //请求热卖商品
               getGoods({
-                is_hot:true
+                is_hot:false
               })
                 .then((response)=> {
-                    //console.log(response.data+"热卖商品");
+                    console.log(response.data);
                     this.hotProduct = response.data.results;
 
                 }).catch(function (error) {

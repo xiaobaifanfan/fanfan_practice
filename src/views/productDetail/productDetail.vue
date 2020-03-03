@@ -1,10 +1,10 @@
 <template>
     <div>
 
-       <current-loc style="border:2px solid pink;"></current-loc>
+       <current-loc "></current-loc>
         <!--商品详情页上方-->
-        <div class="detail cle z-detail-box">
-            <div class="detail_wrap">
+        <div class="detail cle z-detail-box" style="border:1px solid black;">
+            <div class="detail_wrap" style="border:2px solid #096;">
                 <div class="detail_img" id="detail_img" style="border:2px solid orange;">
                     <div class="pic_view" style="border:2px solid red;">
 
@@ -83,6 +83,7 @@
                 </div>
             </div>
 
+                <hot-sales style="border:1px solid orange;"></hot-sales>
         </div>
 
         <!--商品详情页下方-->
@@ -120,7 +121,6 @@
                     </div>
                 </div>
                 <!-- 热卖商品 -->
-                <hot-sales></hot-sales>
 
                 <moreDetail/>
 
@@ -608,7 +608,8 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
 }
 .detail_wrap {
     width: 1000px;
-    margin: 0 auto;
+    margin-bottom:0px;
+    margin-left:0px;
 }
 .detail_img {
     width:410px;
@@ -745,7 +746,7 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
 
 .item-info {
     float:left;
-    width:570px;
+    width:558px;
     color:#999;
     position:relative
 }

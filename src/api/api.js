@@ -2,6 +2,7 @@ import axios from 'axios';
 
 
 let host = 'http://shop.projectsedu.com';
+let local_host = 'http://101.133.224.55:8001';
 
 //获取商品类别信息
 export const queryCategorygoods = params => { return axios.get(`${host}/indexgoods/`) }
@@ -15,23 +16,22 @@ export const bannerGoods = params => { return axios.get(`${host}/banners/`) }
 //获取商品类别信息
 export const getCategory = params => {
   if('id' in params){
-    return axios.get(`${host}/categorys/`+params.id+'/');
+    return axios.get(`${local_host}/categorys/`+params.id+'/');
   }
   else {
-    return axios.get(`${host}/categorys/`, params);
+    return axios.get(`${local_host}/categorys/`, params);
   }
 };
-
 
 
 //获取热门搜索关键词
 export const getHotSearch = params => { return axios.get(`${host}/hotsearchs/`) }
 
 //获取商品列表
-export const getGoods = params => { return axios.get(`${host}/goods/`, { params: params }) }
+export const getGoods = params => { return axios.get(`${local_host}/goods/`, { params: params }) }
 
 //商品详情
-export const getGoodsDetail = goodId => { return axios.get(`${host}/goods/${goodId}`+'/') }
+export const getGoodsDetail = goodId => { return axios.get(`${local_host}/goods/${goodId}`+'/') }
 
 //获取购物车商品
 export const getShopCarts = params => { return axios.get(`${host}/shopcarts/`) }
@@ -43,34 +43,34 @@ export const updateShopCart = (goodsId, params) => { return axios.patch(`${host}
 export const deleteShopCart = goodsId => { return axios.delete(`${host}/shopcarts/`+goodsId+'/') }
 
 //收藏
-export const addFav = params => { return axios.post(`${host}/userfavs/`, params) }
+export const addFav = params => { return axios.post(`${local_host}/userfavs/`, params) }
 
 //取消收藏
-export const delFav = goodsId => { return axios.delete(`${host}/userfavs/`+goodsId+'/') }
+export const delFav = goodsId => { return axios.delete(`${local_host}/userfavs/`+goodsId+'/') }
 
-export const getAllFavs = () => { return axios.get(`${host}/userfavs/`) }
+export const getAllFavs = () => { return axios.get(`${local_host}/userfavs/`) }
 
 //判断是否收藏
-export const getFav = goodsId => { return axios.get(`${host}/userfavs/`+goodsId+'/') }
+export const getFav = goodsId => { return axios.get(`${local_host}/userfavs/`+goodsId+'/') }
 
 //登录
 export const login = params => {
-  return axios.post(`${host}/login/`, params)
+  return axios.post(`${local_host}/login/`, params)
 }
 
 //注册
 
-export const register = parmas => { return axios.post(`${host}/users/`, parmas) }
+export const register = parmas => { return axios.post(`${local_host}/users/`, parmas) }
 
 //短信
-export const getMessage = parmas => { return axios.post(`${host}/code/`, parmas) }
+export const getMessage = parmas => { return axios.post(`${local_host}/code/`, parmas) }
 
 
 //获取用户信息
-export const getUserDetail = () => { return axios.get(`${host}/users/1/`) }
+export const getUserDetail = () => { return axios.get(`${local_host}/users/1/`) }
 
 //修改用户信息
-export const updateUserInfo = params => { return axios.patch(`${host}/users/1/`, params) }
+export const updateUserInfo = params => { return axios.patch(`${local_host}/users/1/`, params) }
 
 
 //获取订单
@@ -103,3 +103,8 @@ export const updateAddress = (addressId, params) => {return axios.patch(`${host}
 
 //获取收货地址
 export const getAddress = () => {return axios.get(`${host}/address/`)}
+
+
+
+// WEBPACK FOOTER //
+// ./src/api/api.js

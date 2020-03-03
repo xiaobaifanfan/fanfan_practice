@@ -3,6 +3,7 @@
         <banner></banner>
         <newP></newP>
         <seriesList></seriesList>
+
     </div>
 </template>
 <script>
