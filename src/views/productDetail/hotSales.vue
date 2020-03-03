@@ -1,17 +1,21 @@
 <template>
-<div class="z-detail-right">
+<div class="z-detail-right" style="border:1px solid red;">
     <div class="tabs_bar_right">
-        <div class="tabs_bar2">热卖商品</div>
+        <div class="tabs_bar2">
+        <s></s>
+        <span>热卖商品</span></div>
     </div>
     <div class="hot_box">
         <ul>
             <li v-for="item in hotProduct">
               <router-link :to="'/app/home/productDetail/'+item.id">
-                <img width="140px" height="140px" :src="item.goods_front_image">
+                <div class="container">
+                    <img class="content_img" :src="item.goods_front_image">
+                    <p class="hot_price">￥{{item.shop_price}}元</p>
+                </div>
+                <p class="hot_name">{{item.name}}热卖商品</p>
 
-                <p>{{item.goods_brief}}热卖商品</p>
-
-                <p class="hot_price">￥{{item.shop_price}}元</p>
+               
               </router-link>
             </li>
         </ul>
@@ -42,7 +46,7 @@
         methods: {
             getHotSales() { //请求热卖商品
               getGoods({
-                is_hot:false
+                is_hot:true
               })
                 .then((response)=> {
                     console.log(response.data);
@@ -78,40 +82,7 @@ img {
     border:0
 }
 
-input{
-    font-size:12px;
-    outline:0;
-    resize:none;
-    color:#333
-}
-button {
-    cursor:pointer
-}
 
-.clear {
-    clear:both;
-    height:0;
-    font-size:0;
-    line-height:0;
-    overflow:hidden
-}
-.cle:after, {
-    visibility:hidden;
-    display:block;
-    font-size:0;
-    content:'\20';
-    clear:both;
-    height:0
-}
-.cle{
-    *zoom:1
-}
-.fl {
-    float:left
-}
-.fr {
-    float:right
-}
 a {
     text-decoration:none;
     color:#333;
@@ -122,7 +93,7 @@ a {
     transition:color .2s
 }
 a:hover {
-    color:#09c762
+    color:red;
 }
 a:focus,area:focus {
     outline:0
@@ -137,21 +108,40 @@ canvas {
 
 
 .z-detail-right {
-    width:216px;
+    width:200px;
     float:right
 }
 .tabs_bar_right {
-    height:50px;
+    height:25px;
     width:216px;
+    position:relative;
 }
 .tabs_bar2 {
-    height:48px;
-    background:#f3f3f3;
-    border:1px solid #ccc;
+    height:20px;
     padding:0 35px;
     display:block;
     line-height:48px;
     text-align:center;
+}
+.tabs_bar2>s{
+    position:absolute;
+    top:20px;
+    left:30px;
+    width:140px;
+    height:0px;
+    border-top:1px dotted #c9c9c9;
+    text-decoration:none;
+}
+.tabs_bar2>span{
+    position:absolute;
+    color:#999;
+    text-align:center;
+    height:20px;
+    line-height:20px;
+    top:10px;
+    left:35%;
+    background-color:#fafafa;
+    padding:0;
 }
 
 .hot_box {
@@ -162,11 +152,40 @@ canvas {
 .hot_box ul li {
     margin-bottom:10px;
 }
+li{
+    height:174px;
+}
+.container{
+    display:block;
+    text-align:center;
+    color:#625742;
+    zoom:1;
+    cursor:pointer;
+    position:relative;
+}
+.content_img{
+    vertical-align:middle;
+    max-height:140px;
+    max-width:140px;
+    border:0;
+}
 p.hot_price {
+    position:absolute;
+    font-family:Arial;
     color:#09c762;
     font-weight:bold;
-    font-size:14px;
-    line-height:24px;
+    line-height:20px;
+    background-color:rgba(255,2255,255,0.7);
+    width:140px;
+    margin-left:17px;
+    bottom:0px;
+    text-align:center;
 }
-
+p.hot_name{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    display:block;
+    margin-top:5px;
+}
 </style>

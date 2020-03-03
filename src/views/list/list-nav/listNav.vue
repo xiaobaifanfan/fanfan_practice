@@ -44,7 +44,10 @@
         currentCategoryName: ""
     },
     created () {
+    },
+    mounted(){
 
+    //console.log(this.cateMenu);
     },
     watch: {
 

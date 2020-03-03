@@ -72,18 +72,18 @@
                     <div class="main_cata" id="J_mainCata" v-show="showAllmenu">
                         <ul>
                             <li class="first" v-for="(item,index) in allMenuLabel" @mouseover="overChildrenmenu(index)" @mouseout="outChildrenmenu(index)">
-                              <h3 style="background:url(../images/1449088788518670880.png) 20px center no-repeat;">
-                                <router-link :to="'/app/home/list/'+item.id">{{item.name}}</router-link> </h3>
+                              <h3>
+                                <router-link :to="'/app/home/list/'+item.id">{{item.name}}item.name</router-link> </h3>
                                 <div class="J_subCata" id="J_subCata" v-show="showChildrenMenu ===index"  style=" left: 215px; top: 0px;">
                                     <div class="J_subView" >
                                       <div v-for="list in item.sub_cat">
                                         <dl>
                                           <dt>
-                                            <router-link :to="'/app/home/list/'+list.id">{{list.name}}</router-link>
+                                            <router-link :to="'/app/home/list/'+list.id">{{list.name}}list.name</router-link>
                                           </dt>
 
                                           <dd>
-                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">{{childrenList.name}}</router-link>
+                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">{{childrenList.name}}childrenList.id</router-link>
                                           </dd>
                                         </dl>
                                         <div class="clear"></div>
@@ -93,6 +93,7 @@
                             </li>
                         </ul>
                     </div>
+                    <!--菜单分类浮动-->
                 </div>
             </div>
             <ul class="sub_nav cle" id="sub_nav">
@@ -101,7 +102,7 @@
                 </li>
                 <template v-for="(item,index) in allMenuLabel">
                   <li>
-                    <div v-if="item.is_tab">
+                    <div v-if="item.is_tab" >
                       <router-link :to="'/app/home/list/'+item.id" >{{item.name}}</router-link>
                     </div>
                   </li>
@@ -280,7 +281,6 @@ a:focus,area:focus {
 fieldset,img {
     border:0
 }
-
 #header {
     background:#fff;
     zoom:1
@@ -894,7 +894,7 @@ fieldset,img {
     display:inline-block;
     height:21px;
     overflow:hidden;
-    padding:7px 28px;
+    padding:7px 18px;
     color:#fff;
 }
 .hd_nav .sub_nav li.current a,.hd_nav .sub_nav li a:hover {
