@@ -5,8 +5,9 @@
             <a href="">{{proFirstCategory}}</a>
             <code>&gt;</code>
             <a href="">{{proSecondCategory}}</a>
-            <code>&gt;</code>
-            {{proThirdCategory}}
+       <!--   <code>&gt;</code>
+            {{proThirdCategory}}-->
+           
             <code>&gt;</code>
             {{proTitle}}
           </div>
@@ -22,13 +23,12 @@ import { getGoodsDetail,getCategory,queryCategorygoods} from '../../../api/api';
 export default {
     data () {
         return {
-            category_id:'',
             itemGood:'',
             productId:'',
             proTitle:'',
             proFirstCategory:'',
             proSecondCategory:'',
-            proThirdCategory:''
+   //         proThirdCategory:''
             
         };
     },
@@ -39,28 +39,29 @@ export default {
         
     },
     created () {
-
+        var categoryType=0;
+        var category_id='';
+        var num=0;
        this.productId=this.$route.params.productId;
+       //let categoryType='0';
        getGoodsDetail(this.productId)
             .then((response)=> {
                 this.itemGood=response.data;
                 console.log(this.itemGood);
                 this.proTitle=this.itemGood.name;
-                this.proThirdCategory=this.itemGood.category.name;
-                this.category_id=this.itemGood.category.id; 
-                }).catch(function (error) {
+                this.proSecondCategory=this.itemGood.category.name;//目前商品的目录都是二级目录
+                category_id=this.itemGood.category.parent_category;//获取父级种类id(一级)
+        
+            getCategory({id:category_id}).then((res)=>{
+            console.log(res);
+            this.proFirstCategory=res.data.name;
+            category_id=res.data.parent_category;
+            })
+            
+            }).catch((error)=>{
                 console.log(error);
             });
-        //打印所有一级目录
-         getCategory({id:3}).then((response)=>{
-         console.log(response);
-         console.log("打印所有一级目录")
-         }).catch(error=>{
-                console.log(error);
-         });
-        
-         
-        
+       
         
     },
     watch: {

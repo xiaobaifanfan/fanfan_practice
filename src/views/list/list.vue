@@ -46,7 +46,8 @@
                 pricemax: '', //价格最高
                 pageType:'list',
                 searchWord:'',
-                currentCategoryName:''
+                currentCategoryName:'',
+                currentCategoryType:''
             };
         },
         components: {
@@ -84,8 +85,8 @@
                     this.searchWord = this.$route.params.keyword;
                 }
 
-                this.getCurLoc(); // 获取当前位置
                 this.getListData(); //获取产品列表
+                this.getCurLoc(); // 获取当前位置
                 this.getPriceRange(); // 获取价格区间
             },
             getListData() {
@@ -137,7 +138,41 @@
             },
 
             getCurLoc () { // 当前位置
-               
+               getCategory({
+                    id:this.top_category
+                  }).then((rs)=>{
+                  this.currentCategoryType=rs.data.category_type;
+                  console.log(rs.data)
+                  console.log(rs.data.category_type)
+                  if(this.currentCategoryType===1){
+                    if(this.curLoc.length===1){
+                    this.curLoc.push({name:rs.data.name,id:rs.data.id})
+                    }else{
+                    this.curLoc.pop();
+                    this.curLoc.push({name:rs.data.name,id:rs.data.id})
+                    }
+                  }
+                  if(this.currentCategoryType===3)
+                  {
+                        if(this.curLoc.length===2){
+                        getCategory({id:rs.data.parent_category}).then((res)=>{
+                        this.curLoc.push({name:res.data.name,id:res.data.id})
+                        console.log(res)
+
+                        this.curLoc.push({name:rs.data.name,id:rs.data.id})
+                        })
+                        }else{
+                        this.curLoc.pop();
+                        this.curLoc.pop();
+                        getCategory({id:rs.data.parent_category}).then((res)=>{
+                        this.curLoc.push({name:res.data.name,id:res.data.id})
+                        this.curLoc.push({name:rs.data.name,id:rs.data.id})
+                        })
+                        
+                        }
+                  }
+                  
+                  })
             },
             getPriceRange () {
                 this.$http.post('/priceRange', {
