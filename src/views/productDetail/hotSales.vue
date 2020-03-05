@@ -1,5 +1,5 @@
 <template>
-<div class="z-detail-right" style="border:1px solid red;">
+<div class="z-detail-right">
     <div class="tabs_bar_right">
         <div class="tabs_bar2">
         <s></s>
@@ -7,28 +7,36 @@
     </div>
     <div class="hot_box">
         <ul>
-            <li v-for="item in hotProduct">
+            <li v-for="item in show_hotProduct">
               <router-link :to="'/app/home/productDetail/'+item.id">
                 <div class="container">
                     <img class="content_img" :src="item.goods_front_image">
                     <p class="hot_price">￥{{item.shop_price}}元</p>
                 </div>
-                <p class="hot_name">{{item.name}}热卖商品</p>
-
-               
+                <p class="hot_name">{{item.name}}</p>
               </router-link>
             </li>
         </ul>
+        <div style="margin-bottom:-12px;" >
+            <i id="pre_hotGoods" style="padding-left:30px;font-weight:bold;color:#999" @click="pre_hotGoods">上一页</i>
+            <i id="next_hotGoods" @click="next_hotGoods" style="padding-left:35px;font-weight:bold">下一页</i>
+        </div>
     </div>
 </div>
+
 </template>
 <script>
-    import { getGoods } from '../../api/api'
+    import { getGoods } from '../../api/api';
+
     export default {
         data () {
             return {
                 hotProduct: [
-                ]
+                ],
+                current_page:1,
+                pageNum:0,
+                show_hotProduct:[]
+
             };
         },
         props: {
@@ -41,20 +49,44 @@
 
         },
         computed: {
-
+            
         },
         methods: {
             getHotSales() { //请求热卖商品
               getGoods({
-                is_hot:true
+                is_hot:false,
               })
                 .then((response)=> {
                     console.log(response.data);
                     this.hotProduct = response.data.results;
-
+                    this.show_hotProduct = response.data.results.slice(0,3);
+                    this.pageNum=Math.ceil(this.hotProduct.length/3);
+                    console.log(this.hotProduct.length+"d"+this.pageNum);
                 }).catch(function (error) {
                     console.log(error);
                 });
+            },
+            next_hotGoods(){
+            if(this.current_page===this.pageNum){
+            document.getElementById('next_hotGoods').style.color='#999';
+            }else{
+            this.current_page++;
+            document.getElementById('pre_hotGoods').style.color='black';
+            document.getElementById('next_hotGoods').style.color='black';
+            }
+            console.log(this.current_page)
+            },
+
+            pre_hotGoods(){
+            if(this.current_page===1){
+            document.getElementById('pre_hotGoods').style.color='#999';
+            }else{
+            this.current_page--;
+            document.getElementById('pre_hotGoods').style.color='black';
+            document.getElementById('pre_hotGoods').style.color='black';
+            }
+            
+            console.log(this.current_page)
             }
         }
     }
@@ -188,4 +220,6 @@ p.hot_name{
     display:block;
     margin-top:5px;
 }
+
+
 </style>

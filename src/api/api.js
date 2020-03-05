@@ -29,6 +29,7 @@ export const getHotSearch = params => { return axios.get(`${host}/hotsearchs/`) 
 
 //获取商品列表
 export const getGoods = params => { return axios.get(`${local_host}/goods/`, { params: params }) }
+export const getGoodsCategory = params => { return axios.get(`${local_host}/goods/`+params.id+'/') }
 
 //商品详情
 export const getGoodsDetail = goodId => { return axios.get(`${local_host}/goods/${goodId}`+'/') }

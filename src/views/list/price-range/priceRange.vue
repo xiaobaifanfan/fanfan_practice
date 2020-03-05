@@ -4,14 +4,9 @@
     <div class="bd">
         <dl>
             <dt>价格：</dt>
-            <dd class="dd-price" style="height: 48px;">
+            <dd class="dd-price" style="height: 22px;">
                 <div class="items cle w500">
                     <div class="link" v-for="item in priceRange" @click="changePriceRange(item.min,item.max)"> <a class="item">{{item.min}}&nbsp;-&nbsp;{{item.max}}</a> </div>
-                    <!-- <div class="link"> <a class="item">20&nbsp;-&nbsp;70</a> </div>
-                    <div class="link"> <a class="item">70&nbsp;-&nbsp;120</a> </div>
-                    <div class="link"> <a class="item">120&nbsp;-&nbsp;170</a> </div>
-                    <div class="link"> <a class="item">170&nbsp;-&nbsp;220</a> </div>
-                    <div class="link"> <a class="item">220&nbsp;-&nbsp;270</a> </div> -->
                 </div>
                 <div class="priceform" id="priceform" v-clickoutside="handleClickOutside">
                     <div class="form-bg">
@@ -77,7 +72,7 @@ import clickoutside from '../../../static/js/clickoutside';
 
 .maincon{width:970px;float:right}
 .search-options{margin-bottom:12px;background-color:#fff}
-.search-options .bd{border:1px solid #eee;border-bottom:0;+zoom:1}
+.search-options .bd{border:1px solid #eee;border-bottom:0;+zoom:1;margin-bottom:-13px;}
 .search-options dl{padding:10px 0;border-bottom:1px solid #eee;width:100%;position:relative}
 .search-options dt{position:absolute;top:10px;left:10px;font-size:14px}
 .search-options dd{position:relative;padding:0 50px 0 63px;height:24px;overflow:hidden;-webkit-transition:height .3s;-moz-transition:height .3s;-o-transition:height .3s;transition:height .3s}

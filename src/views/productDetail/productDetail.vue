@@ -1,28 +1,30 @@
 <template>
     <div>
 
-       <current-loc "></current-loc>
+       <current-loc></current-loc>
         <!--商品详情页上方-->
         <div class="detail cle z-detail-box" style="border:1px solid black;">
-            <div class="detail_wrap" style="border:2px solid #096;">
+            <div class="detail_wrap">
                 <div class="detail_img" id="detail_img" style="border:2px solid orange;">
-                    <div class="pic_view" style="border:2px solid red;">
-
-                        <a class="MagicZoomPlus" id="Zoomer" style="position: relative; display: inline-block; text-decoration: none; outline: 0px; overflow: hidden; width: auto; height: auto;">
-                            <img :src="curShow.image" alt="" style="opacity: 1;">
-                            <div class="MagicZoomPup" style="z-index: 10; position: absolute; overflow: hidden;  visibility: hidden; width: 190px; height: 190px; opacity: 0.5;"></div>
-                            <div class="MagicZoomPlusHint" style="display: block; overflow: hidden; position: absolute; visibility: visible; z-index: 1; left: 2px; right: auto; top: 2px; bottom: auto; opacity: 0.75; max-width: 376px;"></div>
-                        </a>
+                    <div class="pic_view">
+                            <span class="mask"></span>
+                            <span class="float_layer"></span>
+                            <img :src="curShow.image" alt="" style="opacity: 1;">                     
                     </div>
+                    <div  class="pic_view_bigger">
+                        <img :src="curShow.image" alt="">  
+                    </div>
+                         
+                   
 
-                    <div class="item-thumbs" id="item-thumbs" style="border:2px solid black;">
->
+                    <div class="item-thumbs" id="item-thumbs">
+
                         <a class="prev" href="javascript:void(0);" @click="ImagePrev"></a>
                         <a class="next" href="javascript:void(0);" @click="ImageNext"></a>
                         <div class="bd">
                             <div class="tempWrap" style="overflow:hidden; position:relative; width:330px">
                                 <ul class="cle" style="width: 330px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: 0px;">
-                                    <li v-for="(item,index) in proDetail.images" :class="{'current': index===curIndex}" @click="replaceShow(index,item)">
+                                    <li v-for="(item,index) in proDetail.images" :class="{'current': index===curIndex}" @mouseover="replaceShow(index,item)">
                                         <a>
                                             <img :src="item.image" alt="">
                                         </a>
@@ -31,6 +33,9 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div clss="tm-action tm-clear" style="height:80px; border:1px solid red;">
+                    <p><i></i>收藏商品&nbsp;&npsp;( {{}}人气)</p>
                     </div>
                 </div>
 
@@ -127,9 +132,12 @@
             </div>
         </div>
         <model ref="model"></model>
+        
     </div>
 </template>
 <script>
+import $ from 'jquery';
+    
 import cookie from '../../static/js/cookie';
 import currentLoc from './current-loc/current-loc';
 import hotSales from './hotSales';
@@ -137,6 +145,8 @@ import model from './model';
 import moreDetail from './moreDetail';
 import { mapGetters } from 'vuex';
 import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from '../../api/api';
+
+
   export default {
     data () {
         return {
@@ -149,7 +159,7 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
             hasFav: false,
             proDetail: {
             },
-            buyNum:1
+            buyNum:1,
         };
     },
     components: {
@@ -173,8 +183,12 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
         }
         this.getDetails();
     },
-    watch: {
-
+    watch: {//子组件hotsales更改路由地址，则强制刷新detail页面
+        $route(to,from){
+        if(to.path!=from.path){
+        location.reload();
+        }
+        }
     },
     computed: {
     },
@@ -271,10 +285,70 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
             this.curIndex = this.curIndex === this.proDetail.images.length - 1 ? this.proDetail.images.length - 1 : this.curIndex + 1;
          this.curShow=this.proDetail.images[this.curIndex];
         }
+        
     }
 }
+$(function(){
+   $(".mask").mouseover(function() {
+    $(".float_layer").show()
+    $(".pic_view_bigger").show()
+})
+$(".mask").mouseout(function() {
+    $(".float_layer").hide()
+    $(".pic_view_bigger").hide()
+})
+
+
+
+$(".mask").mousemove(function(e) {
+    var l = e.pageX - $(".pic_view").offset().left - ($(".float_layer").width() / 2)
+    var t = e.pageY - $(".pic_view").offset().top - ($(".float_layer").height() / 2)
+    if (l < 0) {
+        l = 0
+    }
+    if (l > $(this).width() - $(".float_layer").width()) {
+        l = $(this).width() - $(".float_layer").width()
+    }
+    if (t < 0) {
+        t = 0
+    }
+    if (t > $(this).height() - $(".float_layer").height()) {
+        t = $(this).height() - $(".float_layer").height()
+    }
+
+    $(".float_layer").css({
+        "left": l,
+        "top": t
+    })
+    var pX = l / ($(".mask").width() - $(".float_layer").width())
+    var pY = t / ($(".mask").height() - $(".float_layer").height())
+    $(".pic_view_bigger img").css({
+        "left": -pX * ($(".pic_view_bigger img").width() - $(".pic_view_bigger").width()),
+        "top": -pY * ($(".pic_view_bigger img").height() - $(".pic_view_bigger").height())
+    })
+
+
+
+}) 
+})
+
+
 </script>
 <style >
+
+.pic_view_bigger {
+ height:380px;
+ width:380px;
+ position:absolute;
+ top:20px;
+ left:399px;
+ display:none;
+ z-index:5;
+ overflow:hidden;
+}
+.pic_view_bigger img{
+    position:absolute;
+}
 
 
 .tabs_bar_warp {
@@ -629,25 +703,24 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
     width:380px;
     height:380px
 }
+.detail_img .pic_view .mask{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    opacity:0;
+    z-index:2;
+    cursor:move;
+}
+.detail_img  .pic_view .float_layer{
+    position:absolute;
+    width:190px;
+    height:190px;
+    background:rgba(0,0,0,0.5);
+    display:none;
+}
 
-.detail_img {
-    width:410px;
-    position:relative;
-    float:left
-}
-.detail_brand {
-    display:none
-}
-.detail_img .pic_view {
-    width:380px;
-    height:380px;
-    margin:20px auto 0;
-    position:relative
-}
-.detail_img .pic_view img {
-    width:380px;
-    height:380px
-}
+
 #pic-view {
     position:absolute;
     top:0;
@@ -670,7 +743,7 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
 }
 .item-thumbs li {
     width:56px;
-    height:56px;
+    height:54px;
     overflow:hidden;
     border:1px solid #ddd;
     margin:0;
@@ -681,7 +754,9 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
     display:block
 }
 .item-thumbs li.current {
-    border-color:#09c762
+    border:2px solid #09c762;
+   
+
 }
 .item-thumbs .bd {
     width:330px;
@@ -748,12 +823,14 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
     float:left;
     width:558px;
     color:#999;
-    position:relative
+    position:relative;
+    height:500px;
 }
 .item-info dl {
     height:425px;
     padding-bottom:10px;
-    background:url(./images/loading_nala.gif?0428) 250px 200px no-repeat
+    background:url(./images/loading_nala.gif?0428) 250px 200px no-repeat;
+    border:1px solid red;
 }
 .item-info dl.loaded {
     height:auto;

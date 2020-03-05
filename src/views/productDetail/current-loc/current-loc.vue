@@ -11,14 +11,13 @@
             {{proTitle}}
           </div>
       </div>
-    
+
     </div>
   
 </template>
 <script> 
 import { mapGetters } from 'vuex';
 import { getGoodsDetail,getCategory,queryCategorygoods} from '../../../api/api';
-
 
 export default {
     data () {
@@ -52,22 +51,14 @@ export default {
                 }).catch(function (error) {
                 console.log(error);
             });
-            //打印所有一级目录
-         getCategory({params:{}}).then((response)=>{
-         //console.log(response);
-         //console.log("打印所有一级目录")
+        //打印所有一级目录
+         getCategory({id:3}).then((response)=>{
+         console.log(response);
+         console.log("打印所有一级目录")
          }).catch(error=>{
                 console.log(error);
          });
-            //查询指定的id的一级目录。二级三级无法查询       
-        getCategory({
-        id:this.category_id
-        }).then((res)=>{
-        //console.log(res);
-        //console.log("指定的商品类别:"+this.category_id)
-        }).catch((error)=>{
-        console.log(error);
-        });
+        
          
         
         

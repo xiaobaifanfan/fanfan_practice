@@ -29,7 +29,7 @@
     // 价格范围
     import priceRange from './price-range/priceRange';
 
-    import { getCategory, getGoods } from '../../api/api'
+    import { getCategory, getGoods,getGoodsCategory } from '../../api/api'
     export default {
         data () {
             return {
@@ -40,7 +40,7 @@
                 isObject:true,
                 ordering: '-add_time',
                 proNum: 0, //商品数量
-                curLoc:[{'name':'首页','id':'0'}], //当前位置
+                curLoc: [{id:'0',name:'首页'},], //当前位置
                 priceRange: [], //价格区间
                 pricemin: '', //价格最低
                 pricemax: '', //价格最高
@@ -74,6 +74,7 @@
         },
         methods: {
             getAllData () {
+                console.log(this.$route.params)
                 if(this.$route.params.id){
                     this.top_category = this.$route.params.id;
                     this.getMenu(this.top_category); // 获取左侧菜单列表
@@ -83,10 +84,9 @@
                     this.searchWord = this.$route.params.keyword;
                 }
 
-                
+                this.getCurLoc(); // 获取当前位置
                 this.getListData(); //获取产品列表
-                this.getCurLoc();//该方法有问题，暂时未用
-                //this.getPriceRange(); // 获取价格区间
+                this.getPriceRange(); // 获取价格区间
             },
             getListData() {
                 if(this.pageType=='search'){
@@ -122,15 +122,6 @@
                   }).then((response)=> {
                     this.cateMenu = response.data.sub_cat;
                     this.currentCategoryName = response.data.name;
-                    
-                    if(this.curLoc.length===2){//如果目录中有个，说明已经是一级目录了，必须先清理上一个目录，再添加新目录 
-                    this.curLoc.pop();
-                    this.curLoc.push({'name':this.currentCategoryName,'id':this.$route.params.id});
-                    }else{
-                    this.curLoc.push({'name':this.currentCategoryName,'id':this.$route.params.id});
-                    }
-
-
                   }).catch(function (error) {
                     console.log(error);
                   });
@@ -144,25 +135,22 @@
                 }
 
             },
-            getCurLoc() { // 当前位置
-                
+
+            getCurLoc () { // 当前位置
+               
             },
             getPriceRange () {
-                console.log("getpricerange"+this.$route.params.id)
                 this.$http.post('/priceRange', {
                     params: {
-                       proType: this.$route.params.id, //商品类型
+                        proType: this.type, //商品类型
                     }
                 }).then((response)=> {
 
                     this.priceRange = response.data;
-                    console.log(this.priceRange);
-                    console.log("获取priceRange函数");
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-              
             changeSort (type) {
 
                 this.ordering = type;
@@ -175,7 +163,6 @@
                 this.getListData();
             },
             changeMenu (id) {
-                console.log("新获取的目录id:"+id);
                 this.top_category = id; //重新获取
                 this.getCurLoc();
                 this.getMenu(id);

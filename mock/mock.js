@@ -352,28 +352,40 @@ Mock.mock('/category', // 菜单列表
 Mock.mock('/currentLoc',
     [
         {
-            id: 1,
+            id: 0,
             name: '首页',
         },
         {
-            id: 232,
+            id: 1,
+            name: '生鲜水果',
+        },
+        {
+            id: 24,
             name: '酒水饮料',
         },
         {
-            id: 456,
-            name: '粮油副食',
+          id: 40,
+          name: '粮油副食',
         },
         {
-          id: 56,
-          name: '休闲食品',
-        },
-        {
-          id: 6,
+          id: 57,
           name: '蔬菜水果',
         },
         {
-          id: 7,
-          name: '奶类食品',
+          id: 74,
+          name: '休闲食品',
+        },
+        {
+            id:102,
+            name:'奶类食品'
+        },
+        {
+            id:108,
+            name:'天然干货'
+        },
+        {
+            id:117,
+            name:'精选茗茶'
         }
 
 
