@@ -4,7 +4,7 @@
           <div class="menus">
             <template v-for="(item,index) in curLoc">
                 <router-link :to="{name: 'index'}" v-if="index===0">{{item.name}}</router-link>
-                <router-link :to="{name: 'list', params:{id: item.id}}"  @click="changeCurlocShow(index)" v-else>{{item.name}} </router-link>
+                <router-link :to="{name: 'list', params:{id: item.id}}" v-else>{{item.name}} </router-link>
                <code v-if="index!==curLoc.length-1">&gt;</code><!--添加目录中向右的箭头-->
             </template>
             
@@ -43,13 +43,7 @@
 
     },
     methods: {
-     changeCurlocShow(e){
-     //console.log(this.curLoc);
-     console.log("getcurloc")
-     console.log(e),
-     console.log(this.curLoc)
-     curLoc.splice(index ,2)
-     }
+     
     }
 }
 </script>

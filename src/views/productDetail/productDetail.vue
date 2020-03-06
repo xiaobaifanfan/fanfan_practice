@@ -127,8 +127,7 @@
                 </div>
                 <!-- 热卖商品 -->
 
-                <moreDetail/>
-
+                
             </div>
         </div>
         <model ref="model"></model>
@@ -142,7 +141,6 @@ import cookie from '../../static/js/cookie';
 import currentLoc from './current-loc/current-loc';
 import hotSales from './hotSales';
 import model from './model';
-import moreDetail from './moreDetail';
 import { mapGetters } from 'vuex';
 import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from '../../api/api';
 
@@ -165,7 +163,6 @@ import { getGoodsDetail, getFav, addFav, delFav, addShopCart,getShopCart } from 
     components: {
         'current-loc': currentLoc,
         'hot-sales': hotSales,
-        'moreDetail':moreDetail,
          model
     },
     props: {

@@ -4,12 +4,13 @@
             <h3 v-if="isObject"><a href=""><strong>{{currentCategoryName}}</strong><i id="total_count">商品共{{proNum}}件</i></a></h3>
             <dl>
                 <template v-for="item in cateMenu">
-                    <dt>{{ item.name }}</dt>
+                    <dt><router-link :to="{name: 'list', params:{id: item.id}}">{{ item.name}}</router-link></dt>
                     <dd v-for="subItem in item.sub_cat">
-                        <a @click="changeMenu(subItem.id)">{{ subItem.name}}</a>
+                        <router-link :to="{name:'list',params:{id:subItem.id}}">{{ subItem.name}}</router-link>
                     </dd>
                 </template>
             </dl>
+            
         </div>
 
     </div>
@@ -47,7 +48,6 @@
     },
     mounted(){
 
-    //console.log(this.cateMenu);
     },
     watch: {
 

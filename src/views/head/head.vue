@@ -73,17 +73,16 @@
                         <ul>
                             <li class="first" v-for="(item,index) in allMenuLabel" @mouseover="overChildrenmenu(index)" @mouseout="outChildrenmenu(index)">
                               <h3>
-                                <router-link :to="'/app/home/list/'+item.id">{{item.name}}item.name</router-link> </h3>
+                                <router-link :to="'/app/home/list/'+item.id">{{item.name}}</router-link> </h3>
                                 <div class="J_subCata" id="J_subCata" v-show="showChildrenMenu ===index"  style=" left: 215px; top: 0px;">
                                     <div class="J_subView" >
                                       <div v-for="list in item.sub_cat">
                                         <dl>
                                           <dt>
-                                            <router-link :to="'/app/home/list/'+list.id">{{list.name}}list.name</router-link>
+                                            <router-link :to="'/app/home/list/'+list.id">{{list.name}}</router-link>
                                           </dt>
-
                                           <dd>
-                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">{{childrenList.name}}childrenList.id</router-link>
+                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">{{childrenList.name}}</router-link>
                                           </dd>
                                         </dl>
                                         <div class="clear"></div>

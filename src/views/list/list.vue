@@ -142,37 +142,37 @@
                     id:this.top_category
                   }).then((rs)=>{
                   this.currentCategoryType=rs.data.category_type;
-                  console.log(rs.data)
-                  console.log(rs.data.category_type)
+                  //console.log(rs.data)
+                  //console.log(rs.data.category_type)
                   if(this.currentCategoryType===1){
-                    if(this.curLoc.length===1){
-                    this.curLoc.push({name:rs.data.name,id:rs.data.id})
-                    }else{
-                    this.curLoc.pop();
-                    this.curLoc.push({name:rs.data.name,id:rs.data.id})
-                    }
+                    this.curLoc=[{'id':'0','name':"首页"}];
+                    this.curLoc.push({id:rs.data.id,name:rs.data.name});
                   }
-                  if(this.currentCategoryType===3)
+                  if(this.currentCategoryType===2){
+                    this.curLoc=[{'id':'0','name':"首页"}];
+                    getCategory({id:rs.data.parent_category}).then((res)=>{
+                        this.curLoc.push({name:res.data.name,id:res.data.id})
+                        //console.log(res)
+                        this.curLoc.push({name:rs.data.name,id:rs.data.id})
+                        }).catch((err)=>{
+                        console.log(err);
+                        })
+                  }
+                 
+                   if(this.currentCategoryType===3)
                   {
-                        if(this.curLoc.length===2){
-                        getCategory({id:rs.data.parent_category}).then((res)=>{
-                        this.curLoc.push({name:res.data.name,id:res.data.id})
-                        console.log(res)
+                       this.curLoc=[{'id':'0','name':"首页"}];
+                       getCategory({'id':rs.data.parent_category}).then((res)=>{
+                            getCategory({'id':res.data.parent_category}).then((resdata)=>{
+                            this.curLoc.push({name:resdata.data.name,id:resdata.data.id});
+                            this.curLoc.push({name:res.data.name,id:res.data.id});
+                            this.curLoc.push({name:rs.data.name,id:rs.data.id})
+                            })
 
-                        this.curLoc.push({name:rs.data.name,id:rs.data.id})
-                        })
-                        }else{
-                        this.curLoc.pop();
-                        this.curLoc.pop();
-                        getCategory({id:rs.data.parent_category}).then((res)=>{
-                        this.curLoc.push({name:res.data.name,id:res.data.id})
-                        this.curLoc.push({name:rs.data.name,id:rs.data.id})
-                        })
-                        
-                        }
-                  }
-                  
+                       })                  
+                 }
                   })
+                console.log("当前点击的是category_type:"+this.top_category);
             },
             getPriceRange () {
                 this.$http.post('/priceRange', {
@@ -200,6 +200,8 @@
             changeMenu (id) {
                 this.top_category = id; //重新获取
                 this.getCurLoc();
+                console.log(this.curLoc);
+                console.log("--------------------改变目录")
                 this.getMenu(id);
                 this.getListData();
             },
