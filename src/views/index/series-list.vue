@@ -37,9 +37,10 @@
                                  <img :src="list.goods_front_image" style="display: inline;">
                                  </p>
                                 <h3>{{list.name}}</h3>
-                                <p class="price">
-                                    ￥{{list.shop_price}}
+                                <p class="price" >
+                                    ￥{{list.shop_price}} 
                                 </p>
+                               <!-- <img src="../../images/head/logo.gif" style="width:40px height:30px;" />-->
                             </router-link>
                          </li>
 
@@ -62,7 +63,9 @@
               queryCategorygoods()
                 .then((response)=> {
                    //跳转到首页页response.body面
-                    this.list = response.data
+                    this.list = response.data;
+                    console.log(this.list);
+                    console.log("------------brans")
                 })
                 .catch(function (error) {
                   console.log(error);

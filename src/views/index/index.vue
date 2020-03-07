@@ -1,6 +1,9 @@
 <template>
     <div>
-        <banner></banner>
+         <banner_left/>
+         <banner_right/>
+         <banner></banner>
+         <recommandStore></recommandStore>
         <newP></newP>
         <seriesList></seriesList>
 
@@ -13,10 +16,12 @@ import newP from './new';
 import seriesList from './series-list';
 //banner
 import banner from './banners';
-
+import banner_left from './banner_left';
+import banner_right from './banner_right';
+import recommandStore from './recommandStore'
 export default {
     components:{
-        newP,seriesList,banner
+        newP,seriesList,banner,banner_left,banner_right,recommandStore
     }
 }
 </script>

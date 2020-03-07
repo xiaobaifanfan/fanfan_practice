@@ -151,12 +151,10 @@ canvas {
     width:1200px;
 }
 .ct{margin:0 auto;}
-.mb30{margin-bottom:30px;}
+.mb30{margin-bottom:30px;margin-top:20px;}
 .ovh{overflow: hidden;}
 .border-eee{border: 1px solid #eee;}
-.newopro-l{ width: 224px;height: 478px;}
-.newopro-l { width: 224px;height: 478px;}
-.newopro-l img{ width: 224px;height: 478px;}
+.newopro-l img{ width: 200px;height: 478px; border:2px solid red;}
 .fl {
     float:left
 }

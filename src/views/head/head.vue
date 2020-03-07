@@ -66,21 +66,21 @@
         <div class="hd_nav_bd cle">
             <div class="main_nav main_nav_hover" id="main_nav">
                 <div class="main_nav_link" @mouseover="overAllmenu" @mouseout="outAllmenu">
-                    <a class="meunAll">全部商品分类
-                        <i class="iconfont">&#xe643;</i>
+                    <a class="meunAll"><img src="../productDetail/images/icon.png"  />全部商品分类
                     </a>
                     <div class="main_cata" id="J_mainCata" v-show="showAllmenu">
                         <ul>
                             <li class="first" v-for="(item,index) in allMenuLabel" @mouseover="overChildrenmenu(index)" @mouseout="outChildrenmenu(index)">
-                              <h3>
+                              <h3 style="background:url(../images/1449088788518670880.png) 20px center no-repeat;">
                                 <router-link :to="'/app/home/list/'+item.id">{{item.name}}</router-link> </h3>
-                                <div class="J_subCata" id="J_subCata" v-show="showChildrenMenu ===index"  style=" left: 215px; top: 0px;">
+                                <div class="J_subCata" id="J_subCata" v-show="showChildrenMenu ===index"  style=" left: 215px; top: 0px; border:1px solid orange;">
                                     <div class="J_subView" >
                                       <div v-for="list in item.sub_cat">
                                         <dl>
                                           <dt>
                                             <router-link :to="'/app/home/list/'+list.id">{{list.name}}</router-link>
                                           </dt>
+
                                           <dd>
                                             <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">{{childrenList.name}}</router-link>
                                           </dd>
@@ -92,7 +92,6 @@
                             </li>
                         </ul>
                     </div>
-                    <!--菜单分类浮动-->
                 </div>
             </div>
             <ul class="sub_nav cle" id="sub_nav">
@@ -101,7 +100,7 @@
                 </li>
                 <template v-for="(item,index) in allMenuLabel">
                   <li>
-                    <div v-if="item.is_tab" >
+                    <div v-if="item.is_tab">
                       <router-link :to="'/app/home/list/'+item.id" >{{item.name}}</router-link>
                     </div>
                   </li>
@@ -213,14 +212,13 @@ export default {
           getCategory({
             params:{}
           }).then((response)=> {
-                    //console.log(response)
+                    console.log(response)
                     this.allMenuLabel = response.data
                 })
                 .catch(function (error) {
                   console.log(error);
                 });
         },
-        
         getHotSearch(){//获取热搜
           getHotSearch()
                 .then((response)=> {
@@ -657,7 +655,7 @@ fieldset,img {
 }
 
 .hd_nav {
-    background-color:#09c762;
+    background-color:#fff;
     height:35px
 }
 
@@ -679,18 +677,30 @@ fieldset,img {
     width:214px;
     height:35px;
     color:#fff;
-    background-color:#000;
+
     overflow:hidden
 }
 .hd_nav .main_nav .main_nav_link a.meunAll {
     display:block;
-    padding:7px 10px 0 0;
-    height:25px;
-    font-size:14px;
+    padding:7px 45px 0 0;
+    height:36px;
+    font-size:16px;
     text-align:center;
+    align-items:center;
     font-weight:bold;
     color:#fff;
-    overflow:hidden
+    background:#30bf3e;
+    font-family:PingFangSC-Regular;
+    overflow:hidden;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+.hd_nav .main_nav .main_nav_link a.meunAll img{
+    width:18px;
+    height:15px;
+    float:left;
+    margin-left:20px;
+    margin-top:4px;
 }
 .hd_nav .main_nav .main_nav_link a:hover {
     color:#fff;
@@ -724,20 +734,18 @@ fieldset,img {
     top:35px;
     z-index:1999;
     padding-bottom:10px;
+
 }
 .main_cata ul {
     width:214px;
-    padding:10px 0;
     overflow:hidden;
-    background-color:#3b3b3b;
+    background:rgba(0,80,0,0.5);
     border-bottom:1px solid #ccc;
-    box-shadow:-2px 4px 4px rgba(200,200,200,0.3)
 }
 .main_cata li {
     width:100%;
-    height:35px;
-    line-height:35px;
-    border:none;
+    height:47px;
+    border-bottom:1px solid #ccc;
     overflow:hidden;
     font-size:0;
 }
@@ -749,11 +757,12 @@ fieldset,img {
 }
 .main_cata li h3 a {
     font-size:13px;
+    line-height:47px;
     font-family:Arial;
     color:#fff;
 }
 .main_cata li .bd {
-    padding:0 0 6px 14px;
+    padding:0;
     margin-right:-10px;
     height:43px;
     overflow:hidden
@@ -795,8 +804,6 @@ fieldset,img {
 
 .J_subCata {
     position:absolute;
-    top:35px;
-    left:100px;
     z-index:1998;
     -webkit-transition:all .2s ease;
     -moz-transition:all .2s ease;
@@ -806,7 +813,8 @@ fieldset,img {
 }
 .J_subCata .J_subView {
     border:1px solid #ccc;
-    width:600px;
+    width:700px;
+    height:360px;
     min-height:228px;
     padding-top:5px;
     overflow:hidden;
@@ -894,11 +902,11 @@ fieldset,img {
     height:21px;
     overflow:hidden;
     padding:7px 18px;
-    color:#fff;
+    color:#646464;
 }
 .hd_nav .sub_nav li.current a,.hd_nav .sub_nav li a:hover {
-    color:#fff;
-    background-color:#1e9246;
+    color:#09c762;
+    font-weight:700;
     text-decoration:none
 }
 

@@ -1,17 +1,22 @@
 <template>
   <div class="banner-warp">
     <swiper :options="swiperOption">
-      <swiper-slide v-for="item in banners" :key="item.goods">
-        <router-link :to="'/app/home/productDetail/'+item.goods" target = _blank> <img :src="item.image" alt="" /></router-link>
+      <swiper-slide v-for="item in banners" :key="item.goods" >
+        <router-link :to="'/app/home/productDetail/'+item.goods" target = _blank > <img :src="item.image" alt="" style="height:380px; width:800px;"/></router-link>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
   </div>
 </template>
-<style>
+<style scoped>
   .banner-warp{
-    height:300px;
+    height:380px;
+    width:800px;
+    margin-left:calc(50% - 800px / 2 + 16px);
+    box-sizing:border-box;
+    
   }
+ 
 </style>
 
 
