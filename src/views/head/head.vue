@@ -55,20 +55,19 @@
                     </a>
                     <div class="main_cata" id="J_mainCata" v-show="showAllmenu">
                         <ul>
-                            <li class="first" v-for="(item,index) in allMenuLabel" @mouseover="overChildrenmenu(index)" @mouseout="outChildrenmenu(index)">
+                            <li class="first" v-for="(item,index) in allMenuLabel" @mouseover="overChildrenmenu(index)" @mouseout="outChildrenmenu(index)" @click="closeMenu" v-if="item.is_tab">
                               <h3 style="background:url(../images/1449088788518670880.png) 20px center no-repeat;">
                                 <router-link :to="'/app/home/list/'+item.id">{{item.name}}</router-link> </h3>
                                 <div class="J_subCata" id="J_subCata" v-show="showChildrenMenu ===index"  style=" left: 215px; top: 0px; border:1px solid orange;">
                                     <div class="J_subView" >
                                       <div v-for="list in item.sub_cat">
                                         <dl>
-                                          <dt>
+                                          <h3>
                                             <router-link :to="'/app/home/list/'+list.id">{{list.name}}</router-link>
-                                          </dt>
-
-                                          <dd>
-                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">{{childrenList.name}}</router-link>
-                                          </dd>
+                                          </h3>
+                                          <p>
+                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">&nbsp;&nbsp;&nbsp;&nbsp;{{childrenList.name}}</router-link>
+                                          </p>
                                         </dl>
                                         <div class="clear"></div>
                                       </div>
@@ -158,6 +157,9 @@ export default {
         },
         outAllmenu(){
              this.showAllmenu = false;
+        },
+        closeMenu(){
+            this.showAllmenu=false;
         },
         searchSubmit(){
             if(this.searchWord){
@@ -464,30 +466,7 @@ fieldset,img {
     opacity:1 !important;
     visibility:visible !important;
 }
-/*.hd_bar .more-bd .list {*/
-    /*width:94px;*/
-    /*border:1px solid #ddd;*/
-    /*background:#fff*/
-/*}*/
-/*.hd_bar .more-bd .hezuo_list {*/
-    /*width:72px*/
-/*}*/
-/*.hd_bar .more-bd .list a {*/
-    /*display:block;*/
-    /*background-color:#fff;*/
-    /*border-bottom:1px dashed #d7d7d7;*/
-    /*padding:6px 10px;*/
-    /*height:17px;*/
-    /*overflow:hidden*/
-/*}*/
-/*.hd_bar .more-bd .list a:hover {*/
-    /*background:#f8f8f8;*/
-    /*color:#333;*/
-    /*text-decoration:none*/
-/*}*/
-/*.hd_bar .more-bd .list a.last {*/
-    /*border-bottom:0*/
-/*}*/
+
 .hd_bar li.hover a.menu-link {
     color:#09c762
 }
@@ -635,7 +614,6 @@ fieldset,img {
     margin-top:4px;
 }
 .hd_nav .main_nav .main_nav_link a:hover {
-    color:#fff;
     text-decoration:none
 }
 .hd_nav .main_nav .main_nav_link i {
@@ -676,7 +654,7 @@ fieldset,img {
 }
 .main_cata li {
     width:100%;
-    height:47px;
+    height:64.5px;
     border-bottom:1px solid #ccc;
     overflow:hidden;
     font-size:0;
@@ -689,7 +667,7 @@ fieldset,img {
 }
 .main_cata li h3 a {
     font-size:13px;
-    line-height:47px;
+    line-height:64.5px;
     font-family:Arial;
     color:#fff;
 }
@@ -730,10 +708,6 @@ fieldset,img {
 .main_cata li.current h3 a,.main_cata li.current a:hover {
     color:#09c762
 }
-
-
-
-
 .J_subCata {
     position:absolute;
     z-index:1998;
@@ -745,75 +719,55 @@ fieldset,img {
 }
 .J_subCata .J_subView {
     border:1px solid #ccc;
-    width:800px;
-    height:360px;
+    width:780px;
+    height:520px;
     min-height:228px;
-    padding-top:5px;
     overflow:hidden;
     background:rgba(0,255,0,0.3);
     position:relative;
     box-shadow:3px 3px 4px rgba(0,0,0,0.3);
-    padding:10px;
 }
-.J_subCata .J_subView dl {
-    padding:0 12px 12px;
+.J_subView>div>dl{
+    box-sizing:border-box;
+    border:1px solid rgba(255,255,255,0);
+    margin:0px;
+    padding:0px;
+    height:65px;
 }
-.J_subCata .J_subView dt {
-    float:left;
-    color: #000000;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 30px;
-    text-align:right;
-    margin-bottom: 8px;
-    margin-right: 5px;
-    min-width: 80px;
-    text-indent: 0;
-    zoom:1;
+.J_subCata .J_subView dl h3{
+    height:36px;
+    font-size:16px;
+    margin-top:-15px;
+    margin-left:-20px;
+    width:100%;
 }
-
-.J_subCata .J_subView dd {
-    float: left;
-    line-height: 30px;
-    margin-left: 10px;
-    width: 460px;
+.J_subCata .J_subView dl h3 a{
+      color:black;
+      font-size:16px;
+      font-weight:bold;
 }
-.J_subCata .J_subView dd a {
-    display:inline-block;
-    color:#09c762;
-    padding:0 8px;
-    font-size: 13px;
+.J_subCata .J_subView dl h3 a:hover{
+    color:red;
 }
-.J_subCata .J_subView dd.kuan_cata a {
-    margin-right:30px
-}
-.J_subCata .J_subView dd.brand_cata {
-    font-size:0
-}
-.J_subCata .J_subView dd.brand_cata a {
-    display:inline-block;
-    width:84px;
-    height:32px;
-    border:1px solid #ccc;
-    text-align:center;
-    margin:0 13px 8px 0;
+.J_subCata .J_subView dl p{
     overflow:hidden;
-    background-color:#fff
-}
-.J_subCata .J_subView dd.brand_cata a img {
-    width:64px;
-    height:32px;
-    vertical-align:top
-}
-.J_subCata .J_subView dd a:hover {
-    color:#09c762;
-    border-color:#09c762
-}
+    padding-top:10px;
+    margin-left:30px;
+    font-weight:bold;
 
-
-
+}
+.J_subCata .J_subView dl p a{
+    color:#fff;
+    font-size:15px;
+    margin-right:15px;
+    display:inline-block;
+    white-space:nowrap;
+}
+.J_subCata .J_subView dl p a:hover{
+    color:red;
+}
 .clear {
-    clear:both;
+    clear: both;
     height:0;
     font-size:0;
     line-height:0;
