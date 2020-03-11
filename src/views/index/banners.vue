@@ -2,10 +2,9 @@
 <div class="banner-warp">
     <div class="banner_left">
         <ul>
-          <li  @mouseover="show_children(0)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/1"><span><i class="iconfont">&#xe602;</i>生鲜食品&nbsp;</span></a></div>
+          <li  @mouseover="show_children(0)" ><div class="box_one"><a href="#/app/home/list/1"><span><i class="iconfont">&#xe602;</i>生鲜食品&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/2"><span>精品肉类</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/7"><span>海鲜水产</span></a></div>
-
           </li>
           <li @mouseover="show_children(23)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/24"><span><i class="iconfont">&#xe69d;</i>烟酒饮料&nbsp;</span></a></div>
                 <div class="box_two" >></div>
@@ -38,7 +37,7 @@
           </li>
         </ul>
          
-              <div class="J_subCata" id="J_subCata" style=" left: 215px; top: 0px; border:1px solid orange;" v-if="isShow_children" @mouseenter="show_children">
+              <div class="J_subCata" id="J_subCata" style=" left: 215px; top: 0px; border:1px solid orange;" v-if="isShow_children" @mouseenter="show_childrentemp" @mouseleave="close_children()">
                                     <div class="J_subView" >
                                       <div v-for="list in sub_cat">
                                         <dl>
@@ -168,7 +167,7 @@ a:hover{
     height:520px;
     min-height:228px;
     overflow:hidden;
-    background:rgba(0,255,0,0.3);
+    background:#30bf3e;
     position:relative;
     box-shadow:3px 3px 4px rgba(0,0,0,0.3);
 }
@@ -303,14 +302,14 @@ a:hover{
           })
       },
       show_children(e){
-      console.log(e);
       this.sub_cat=this.menu[e].sub_cat;
-      console.log(this.sub_cat)
       this.isShow_children=true;
       },
-
+       show_childrentemp(){
+      this.isShow_children=true;
+      },
       close_children(){
-      this.isShow_children=false;
+      //this.isShow_children=false;
       }
       
     },
