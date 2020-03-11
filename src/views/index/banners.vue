@@ -2,7 +2,38 @@
 <div class="banner-warp">
     <div class="banner_left">
         <ul>
-          <li v-for="n in 8"></li>
+          <li ><div class="box_one"><a href="#/app/home/list/1"><span><i class="iconfont">&#xe602;</i>生鲜食品&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/2"><span>精品肉类</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/7"><span>海鲜水产</span></a></div>             
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/24"><span><i class="iconfont">&#xe69d;</i>烟酒饮料&nbsp;</span></a></div>
+                <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/25"><span>白酒</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/29"><span>葡萄酒</span></a></div>
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/40"><span><i class="iconfont">&#xe608;</i>粮食副食&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/41"><span>食用油</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/47"><span>米面杂粮</span></a></div>
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/57"><span><i class="iconfont">&#xe603;</i>蔬菜水果&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/58"><span>有机蔬菜</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/62"><span>精选蔬菜</span></a></div>
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/74"><span><i class="iconfont">&#xe69c;</i>休闲食品&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/75"><span>休闲零食</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/81"><span>糖果</span></a></div>
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/102"><span><i class="iconfont">&#xe60a;</i>奶类食品&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/103"><span>进口奶品</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/104"><span>国产奶品</span></a></div>
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/108"><span><i class="iconfont">&#xe6b4;</i>天然干货&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/109"><span>郡菇类</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/110"><span>腌干海产</span></a></div>
+          </li>
+          <li ><div class="box_one"><a href="#/app/home/list/117"><span><i class="iconfont">&#xe607;</i>精选茗茶&nbsp;</span></a></div>
+              <div class="box_two" >></div>
+              <div class="box_three"><a href="#/app/home/list/118"><span>白茶</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/119"><span>红茶</span></a></div>
+          </li>
         </ul>
     </div>
      <div class="banner_right">
@@ -45,16 +76,64 @@
   width:214px;
   height:523px;
   float:left;
-  border:1px solid yellow;
+  //border:1px solid yellow;
   margin-left:77px;
   box-sizing:border-box;
+  background:#fff;
 }
 .banner-warp .banner_left ul li{
+margin:0px;
+padding:0px;
 border-bottom:1px solid #ccc;
+border-left:1px solid #ccc;
 height:65px;
 box-sizing:border-box;
+position:relative;
 }
- 
+.box_one{
+  padding:0px;
+  font-size:17px;
+  font-family:PingFangSC-Regular;
+  color:#222;
+  float:left;
+  //font-weight:bold;
+}
+.iconfont{
+  font-size:27px;
+}
+.box_two{
+  float:right;
+  margin-top:7px;
+  margin-right:35px;
+  color:#222;
+  font-size:20px;
+}
+.box_three{
+  width:100%;
+  position:absolute;
+  bottom:3px;
+  left:3px;
+  font-size:14px;
+  color:#646464;
+}
+a:hover{
+  color:#fff;
+}
+.box_three span{
+  margin-right:15px;
+  margin-left:5px;
+}
+.banner-warp .banner_left ul li:hover{
+  border-bottom:1px solid #f5f5f5;
+  border-right:none;
+  background:#30bf3e;
+}
+.banner-warp .banner_left ul li:hover  div{
+  color:#fff;
+}
+.banner_left ul li:hover a{
+  color:#fff;
+}
 .banner-warp .banner_right{
   width:175px;
   height:378px;
@@ -98,8 +177,9 @@ box-sizing:border-box;
 
 
 <script>
+
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
-  import {bannerGoods} from '../../api/api'
+  import {bannerGoods,getCategory} from '../../api/api'
 
   export default {
     components: {
@@ -134,14 +214,7 @@ box-sizing:border-box;
           });
       },
       getMenu(){
-           getCategory().then((response)=> {
-                    console.log(response)
-                    this.menu = response.data
-                })
-                .catch(function (error) {
-                  console.log(error);
-                });
-        }
+           }
       
     },
     created(){
