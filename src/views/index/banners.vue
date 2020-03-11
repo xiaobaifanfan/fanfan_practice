@@ -84,7 +84,7 @@
    margin:0;
     padding:0;
   }
-  .banner-warp{316272409
+  .banner-warp{
     width:100%;
     height:auto;
   }

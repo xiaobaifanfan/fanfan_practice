@@ -1,6 +1,7 @@
 <template>
     <div>
          <banner></banner>
+         <brans></brans>
          <newP></newP>
          <seriesList></seriesList>
 
@@ -13,9 +14,10 @@ import newP from './new';
 import seriesList from './series-list';
 //banner
 import banner from './banners';
+import brans from './brans';
 export default {
     components:{
-        newP,seriesList,banner
+        newP,seriesList,banner,brans
     }
 }
 </script>

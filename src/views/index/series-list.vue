@@ -64,8 +64,6 @@
                 .then((response)=> {
                    //跳转到首页页response.body面
                     this.list = response.data;
-                    console.log(this.list);
-                    console.log("------------brans")
                 })
                 .catch(function (error) {
                   console.log(error);
