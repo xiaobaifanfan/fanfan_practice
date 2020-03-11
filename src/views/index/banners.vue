@@ -35,10 +35,30 @@
               <div class="box_three"><a href="#/app/home/list/118"><span>白茶</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/119"><span>红茶</span></a></div>
           </li>
         </ul>
-         
     </div>
      <div class="banner_right">
-  右边
+        <button tabindex="-1" class="slider_control slider_control_prev">
+          <img height="36px" src="../../static/images/login/slide_l.png">
+        </button>
+        <ul>
+          <li>
+            <div class="ad_recommand">
+                <div><img src="./images/ad_recomm.jpg"></div>
+                <div><img src="./images/ad_recomm.jpg"></div>
+                <div><img src="./images/ad_recomm.jpg"></div>
+            </div>
+          </li>
+           <li>
+            <div class="ad_recommand">
+                <div><img src="./images/ad_recomm2.jpg"></div>
+                <div><img src="./images/ad_recomm2.jpg"></div>
+                <div><img src="./images/ad_recomm2.jpg"></div>
+            </div>
+          </li>
+        </ul>
+        <button tabindex="-1" class="slider_control slider_control_next">
+        <img height="36px" src="../../static/images/login/slide_r.png">
+        </button>
     </div>
     <div class="banner_swiper">
     <swiper :options="swiperOption">
@@ -142,12 +162,61 @@ a:hover{
   width:175px;
   height:378px;
   float:right;
-  top:30px;
+  top:0px;
   border:1px solid blue;
   margin-right:77px;
+  box-sizing:border-box;
+  position:relative;
+}
+.banner-warp .banner_right ul li{
+  position:absolute;
+  width:100%;
+  height:100%;
+
+}
+.banner-warp .banner_right ul li .ad_recommand{
+  box-sizing:border-box;
+  border:1px solid red;
+}
+.banner-warp .banner_right ul li .ad_recommand div:first-child{
+  margin-top:0px;
+}
+.banner-warp .banner_right ul li .ad_recommand div{
+  box-sizing:border-box;
+  border:1px solid yellow;
+  height:122px;
+  margin-top:4px;
+  width:100%;
+}
+.banner-warp .banner_right ul li .ad_recommand div img{
+  height:100%;
+  width:100%;
+}
+.slider_control{
+  position:absolute;
+  top:50%;
+  width:25px;
+  height:35px;
+  line-height:35px;
+  background-color:#d9d9d9;
+  background-color:rgba(0,0,0,0.15);
+  margin-top:-20px;
+  font-size:20px;
+  z-index:2;
+  border:none;
+  outline:none;
+}
+.slider_control_prev{
+  left:0px;
+  border-top-right-radius:18px;
+  border-bottom-right-radius:18px;
+}
+.slider_control_next{
+  right:3px;
+  border-top-left-radius:18px;
+  border-bottom-left-radius:18px;
 }
 .recommandStore{
-  border:1px solid red;
   height:133px;
   width:980px;
   margin-left:291px;
@@ -169,7 +238,7 @@ a:hover{
   width:190px;
   height:131px;
   box-sizing:border-box;
-  border:1px solid #883;
+  border:1px solid #ccc;
   position:relative;
 }
 .recommandStore ul li img{
@@ -198,6 +267,9 @@ a:hover{
 }
 .recommandStore ul li:hover a{
   color:black;
+}
+.recommandStore ul li:hover{
+  border:2px solid green;
 }
 
 </style>
