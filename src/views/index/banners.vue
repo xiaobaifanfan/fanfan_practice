@@ -2,39 +2,57 @@
 <div class="banner-warp">
     <div class="banner_left">
         <ul>
-          <li ><div class="box_one"><a href="#/app/home/list/1"><span><i class="iconfont">&#xe602;</i>生鲜食品&nbsp;</span></a></div>
+          <li  @mouseover="show_children(0)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/1"><span><i class="iconfont">&#xe602;</i>生鲜食品&nbsp;</span></a></div>
               <div class="box_two" >></div>
-              <div class="box_three"><a href="#/app/home/list/2"><span>精品肉类</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/7"><span>海鲜水产</span></a></div>             
+              <div class="box_three"><a href="#/app/home/list/2"><span>精品肉类</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/7"><span>海鲜水产</span></a></div>
+
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/24"><span><i class="iconfont">&#xe69d;</i>烟酒饮料&nbsp;</span></a></div>
+          <li @mouseover="show_children(23)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/24"><span><i class="iconfont">&#xe69d;</i>烟酒饮料&nbsp;</span></a></div>
                 <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/25"><span>白酒</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/29"><span>葡萄酒</span></a></div>
+
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/40"><span><i class="iconfont">&#xe608;</i>粮食副食&nbsp;</span></a></div>
+          <li @mouseover="show_children(39)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/40"><span><i class="iconfont">&#xe608;</i>粮食副食&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/41"><span>食用油</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/47"><span>米面杂粮</span></a></div>
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/57"><span><i class="iconfont">&#xe603;</i>蔬菜水果&nbsp;</span></a></div>
+          <li @mouseover="show_children(56)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/57"><span><i class="iconfont">&#xe603;</i>蔬菜水果&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/58"><span>有机蔬菜</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/62"><span>精选蔬菜</span></a></div>
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/74"><span><i class="iconfont">&#xe69c;</i>休闲食品&nbsp;</span></a></div>
+          <li @mouseover="show_children(73)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/74"><span><i class="iconfont">&#xe69c;</i>休闲食品&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/75"><span>休闲零食</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/81"><span>糖果</span></a></div>
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/102"><span><i class="iconfont">&#xe60a;</i>奶类食品&nbsp;</span></a></div>
+          <li @mouseover="show_children(101)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/102"><span><i class="iconfont">&#xe60a;</i>奶类食品&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/103"><span>进口奶品</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/104"><span>国产奶品</span></a></div>
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/108"><span><i class="iconfont">&#xe6b4;</i>天然干货&nbsp;</span></a></div>
+          <li @mouseover="show_children(107)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/108"><span><i class="iconfont">&#xe6b4;</i>天然干货&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/109"><span>郡菇类</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/110"><span>腌干海产</span></a></div>
           </li>
-          <li ><div class="box_one"><a href="#/app/home/list/117"><span><i class="iconfont">&#xe607;</i>精选茗茶&nbsp;</span></a></div>
+          <li @mouseover="show_children(116)" @mouseout="close_children()"><div class="box_one"><a href="#/app/home/list/117"><span><i class="iconfont">&#xe607;</i>精选茗茶&nbsp;</span></a></div>
               <div class="box_two" >></div>
               <div class="box_three"><a href="#/app/home/list/118"><span>白茶</span></a>/&nbsp;&nbsp;&nbsp;<a href="#/app/home/list/119"><span>红茶</span></a></div>
           </li>
         </ul>
+         
+              <div class="J_subCata" id="J_subCata" style=" left: 215px; top: 0px; border:1px solid orange;" v-if="isShow_children" @mouseenter="show_children">
+                                    <div class="J_subView" >
+                                      <div v-for="list in sub_cat">
+                                        <dl>
+                                          <h3>
+                                            <router-link :to="'/app/home/list/'+list.id">{{list.name}}</router-link>
+                                          </h3>
+                                          <p>
+                                            <router-link  v-for="childrenList in list.sub_cat" :key="childrenList.id" :to="'/app/home/list/'+childrenList.id">&nbsp;&nbsp;&nbsp;&nbsp;{{childrenList.name}}</router-link>
+                                          </p>
+                                        </dl>
+                                        <div class="clear"></div>
+                                      </div>
+                                    </div>
+          </div>           
     </div>
      <div class="banner_right">
   右边
@@ -76,6 +94,7 @@
   width:214px;
   height:523px;
   float:left;
+  position:relative;
   //border:1px solid yellow;
   margin-left:77px;
   box-sizing:border-box;
@@ -134,6 +153,64 @@ a:hover{
 .banner_left ul li:hover a{
   color:#fff;
 }
+.J_subCata {
+    position:absolute;
+    z-index:1998;
+    -webkit-transition:all .2s ease;
+    -moz-transition:all .2s ease;
+    -ms-transition:all .2s ease;
+    -o-transition:all .2s ease;
+    transition:all .2s ease
+}
+.J_subCata .J_subView {
+    border:1px solid #ccc;
+    width:780px;
+    height:520px;
+    min-height:228px;
+    overflow:hidden;
+    background:rgba(0,255,0,0.3);
+    position:relative;
+    box-shadow:3px 3px 4px rgba(0,0,0,0.3);
+}
+.J_subView>div>dl{
+    box-sizing:border-box;
+    border:1px solid rgba(255,255,255,0);
+    margin:0px;
+    padding:0px;
+    height:65px;
+}
+.J_subCata .J_subView dl h3{
+    height:36px;
+    font-size:16px;
+    margin-top:-15px;
+    margin-left:-20px;
+    width:100%;
+}
+.J_subCata .J_subView dl h3 a{
+      color:black;
+      font-size:16px;
+      font-weight:bold;
+}
+.J_subCata .J_subView dl h3 a:hover{
+    color:red;
+}
+.J_subCata .J_subView dl p{
+    overflow:hidden;
+    padding-top:10px;
+    margin-left:30px;
+    font-weight:bold;
+
+}
+.J_subCata .J_subView dl p a{
+    color:#fff;
+    font-size:15px;
+    margin-right:15px;
+    display:inline-block;
+    white-space:nowrap;
+}
+.J_subCata .J_subView dl p a:hover{
+    color:red;
+}
 .banner-warp .banner_right{
   width:175px;
   height:378px;
@@ -190,6 +267,10 @@ a:hover{
 
       return {
         menu:[],
+        isShow_children:false,
+        nav_bar:[],
+        sub_cat:[],
+        currentIndex:'',
         swiperOption: {
           pagination: '.swiper-pagination',
           paginationClickable: true,
@@ -205,7 +286,7 @@ a:hover{
       getBanner(){
         bannerGoods()
           .then((response)=> {
-            console.log(response)
+            //console.log(response)
             //跳转到首页页response.body面
             this.banners = response.data
           })
@@ -214,7 +295,23 @@ a:hover{
           });
       },
       getMenu(){
-           }
+          getCategory({}).then((res)=>{
+          this.menu=res.data;
+             
+          }).catch((err)=>{
+          console.log(err);
+          })
+      },
+      show_children(e){
+      console.log(e);
+      this.sub_cat=this.menu[e].sub_cat;
+      console.log(this.sub_cat)
+      this.isShow_children=true;
+      },
+
+      close_children(){
+      this.isShow_children=false;
+      }
       
     },
     created(){
