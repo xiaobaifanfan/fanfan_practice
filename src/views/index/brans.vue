@@ -64,14 +64,14 @@
                   </a>
               </div>
               <div class="mess-content">
-                  <div class="mess-items" v-for="n in 11">
-                   
+                  <div class="mess-items" v-for="n in 10">
+                   <a href="#" class="mess-items-temp" >
                       <div class="lefts">
                           <span>[售后]</span>
                           <div>如何培育出健康有机的西红柿?答：近段时间猪肉价格在很多地区来说还是非常高的，譬如小编家乡这边，猪肉价格还是要三十好几，排骨价格则在四十元以上了，下面惠农网小编就和大家一起来看看近段时间猪肉价格最新行情分析。</div>
                       </div>
                       <span>2020-01-23</span>
-
+                  </a>
                   </div>
 
                </div>
@@ -302,7 +302,7 @@ right:10px;
   line-height:40px;
 }
 .new_bg .right{
-  border:1px solid red;
+  //border:1px solid red;
   box-sizing:border-box;
   background:#fff;
   height:520px;
@@ -313,20 +313,35 @@ right:10px;
 }
 .mess-content{
   box-sizing:border-box;
-  border:1px solid yellow;
-  width:710px;
+  //border:1px solid yellow;
+  width:670px;
+  margin:0 auto;
   height:460px;
 }
 .mess-items{
   box-sizing:border-box;
-  border:1px solid red;
+  //border:1px solid red;
   display:flex;
   -webkit-box-align:center;
   align-items:center;
   justify-content:space-between;
   height:40px;
   width:100%;
+  margin-bottom:4px;
+  background:hsla(0,0%,85%,0.2);
+  border-radius:6px;
+}
+.mess-items-temp{
+  align-items:center;
+  justify-content:space-between;
+  height:40px;
+  width:100%;
   margin-bottom:2px;
+  position:relative;
+}
+.mess-items .mess-items-temp:hover{
+  background:rgba(0,255,0,0.3);
+  font-weight:700;
 }
 .lefts{
   display:flex;
@@ -335,24 +350,30 @@ right:10px;
   color:#101010;
   letter-spacing:0px;
 }
-.mess-content .mess-items .lefts span{
+.mess-content .mess-items .mess-items-temp .lefts span{
   color:#39bf3e;
   padding-left:10px;
   line-height:40px;
+  float:left;
+
 }
 .lefts div{
   margin-left:10px;
-  width:580px;
+  width:530px;
   line-height:40px;
   white-space:nowrap;
   text-overflow:ellipsis;
   overflow:hidden;
+  float:left;
 }
-.mess-content .mess-items span{
+.mess-items-temp>span{
   font-family:PingFangSC-Regular;
   font-size:14px;
   color:#909090;
   letter-spacing:0px;
+  position:absolute;
+  right:5px;
+  top:10px;
 }
 </style>
 
