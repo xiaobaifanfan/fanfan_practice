@@ -52,7 +52,35 @@
           </div>
 
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <div class="latest-supply">
+              <div class="latest-supply-top">
+                  <div class="latest-supply-top-left">
+                    <div class="latest-supply-top-title">权威答复</div>
+                    <span>服务好人民服务是我们永恒的宗旨</span>
+                  </div>
+                  <a class="more" href="#">
+                    <div class="latest-supply-top-right">更多<span>>></span></div>
+                  </a>
+              </div>
+              <div class="mess-content">
+                  <div class="mess-items" v-for="n in 11">
+                   
+                      <div class="lefts">
+                          <span>[售后]</span>
+                          <div>如何培育出健康有机的西红柿?答：近段时间猪肉价格在很多地区来说还是非常高的，譬如小编家乡这边，猪肉价格还是要三十好几，排骨价格则在四十元以上了，下面惠农网小编就和大家一起来看看近段时间猪肉价格最新行情分析。</div>
+                      </div>
+                      <span>2020-01-23</span>
+
+                  </div>
+
+               </div>
+            </div>
+
+        </div>
+            
+      </div>
+         
     </div>
   </div>
 </template>
@@ -102,7 +130,7 @@ export default {
     },
     getNewgoods(){
           getGoods({is_new:true}).then((res)=>{
-            this.newgoods=res.data.results.splice(0,4);
+            this.newgoods=res.data.results.splice(4,4);
           })
     }
   }
@@ -157,6 +185,7 @@ height:auto;
   background:#dddd;
   margin-top:10px;
   margin-bottom:10px;
+  position:relative;
 }
 .new_bg .left{
   border:1px solid #fff;
@@ -214,7 +243,7 @@ right:10px;
   height:200px;
   width:200px;
   margin-top:20px;
-  margin-left:23px;
+  margin-left:25px;
   box-sizing:border-box;
   //border:1px solid yellow;
   float:left;
@@ -272,6 +301,58 @@ right:10px;
   letter-spacing:0px;
   line-height:40px;
 }
-
+.new_bg .right{
+  border:1px solid red;
+  box-sizing:border-box;
+  background:#fff;
+  height:520px;
+  width:710px;
+  position:absolute;
+  top:0px;
+  margin-left:490px;
+}
+.mess-content{
+  box-sizing:border-box;
+  border:1px solid yellow;
+  width:710px;
+  height:460px;
+}
+.mess-items{
+  box-sizing:border-box;
+  border:1px solid red;
+  display:flex;
+  -webkit-box-align:center;
+  align-items:center;
+  justify-content:space-between;
+  height:40px;
+  width:100%;
+  margin-bottom:2px;
+}
+.lefts{
+  display:flex;
+  font-family:PingFangSC-Regular;
+  font-size:16px;
+  color:#101010;
+  letter-spacing:0px;
+}
+.mess-content .mess-items .lefts span{
+  color:#39bf3e;
+  padding-left:10px;
+  line-height:40px;
+}
+.lefts div{
+  margin-left:10px;
+  width:580px;
+  line-height:40px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.mess-content .mess-items span{
+  font-family:PingFangSC-Regular;
+  font-size:14px;
+  color:#909090;
+  letter-spacing:0px;
+}
 </style>
 
