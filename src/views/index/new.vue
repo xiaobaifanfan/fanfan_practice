@@ -45,11 +45,10 @@ export default{
     methods:{
         getOpro(){
           getGoods({
-            is_new:false
+            is_new:true
           })
             .then((response)=> {
                //跳转到首页的response.body里面
-               console.log(response);
                 this.newopro = response.data.results
             })
             .catch(function (error) {

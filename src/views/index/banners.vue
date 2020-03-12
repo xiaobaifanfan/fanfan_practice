@@ -170,7 +170,6 @@ a:hover{
   height:378px;
   float:right;
   top:0px;
-  border:1px solid blue;
   margin-right:77px;
   box-sizing:border-box;
   position:relative;
@@ -183,6 +182,10 @@ a:hover{
   height:120px;
   width:100%;
   margin-top:5px;
+  box-sizing:border-box;
+  border-bottom:1px dotted green;
+  border-left:1px dashed #ccc;
+  border-right:1px dashed #ccc;
 }
 
 .slider_control{
@@ -206,7 +209,7 @@ a:hover{
   border-bottom-right-radius:18px;
 }
 .slider_control_next{
-  right:3px;
+  right:0px;
   border-top-left-radius:18px;
   border-bottom-left-radius:18px;
 }
