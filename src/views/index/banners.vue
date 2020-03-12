@@ -37,26 +37,33 @@
         </ul>
     </div>
      <div class="banner_right">
-        <button tabindex="-1" class="slider_control slider_control_prev">
+        <button @click="goprev" class="slider_control slider_control_prev">
           <img height="36px" src="../../static/images/login/slide_l.png">
         </button>
-        <ul>
-          <li>
+        <swiper :options="ad_swiperOption" ref="mySwiper">
+          <swiper-slide>
             <div class="ad_recommand">
                 <div><img src="./images/ad_recomm.jpg"></div>
                 <div><img src="./images/ad_recomm.jpg"></div>
                 <div><img src="./images/ad_recomm.jpg"></div>
             </div>
-          </li>
-           <li>
+          </swiper-slide>
+           <swiper-slide>
             <div class="ad_recommand">
                 <div><img src="./images/ad_recomm2.jpg"></div>
                 <div><img src="./images/ad_recomm2.jpg"></div>
                 <div><img src="./images/ad_recomm2.jpg"></div>
             </div>
-          </li>
-        </ul>
-        <button tabindex="-1" class="slider_control slider_control_next">
+          </swiper-slide>
+          <swiper-slide>
+            <div class="ad_recommand">
+                <div><img src="./images/ad_recomm3.jpg"></div>
+                <div><img src="./images/ad_recomm3.jpg"></div>
+                <div><img src="./images/ad_recomm3.jpg"></div>
+            </div>
+          </swiper-slide>
+        </swiper>
+        <button @click="gonext" class="slider_control slider_control_next">
         <img height="36px" src="../../static/images/login/slide_r.png">
         </button>
     </div>
@@ -167,31 +174,17 @@ a:hover{
   margin-right:77px;
   box-sizing:border-box;
   position:relative;
+  overflow:hidden;
 }
-.banner-warp .banner_right ul li{
-  position:absolute;
-  width:100%;
-  height:100%;
-
-}
-.banner-warp .banner_right ul li .ad_recommand{
-  box-sizing:border-box;
-  border:1px solid red;
-}
-.banner-warp .banner_right ul li .ad_recommand div:first-child{
+.ad_recommand>div:first-child>img{
   margin-top:0px;
 }
-.banner-warp .banner_right ul li .ad_recommand div{
-  box-sizing:border-box;
-  border:1px solid yellow;
-  height:122px;
-  margin-top:4px;
+.ad_recommand div img{
+  height:120px;
   width:100%;
+  margin-top:5px;
 }
-.banner-warp .banner_right ul li .ad_recommand div img{
-  height:100%;
-  width:100%;
-}
+
 .slider_control{
   position:absolute;
   top:50%;
@@ -206,6 +199,7 @@ a:hover{
   border:none;
   outline:none;
 }
+
 .slider_control_prev{
   left:0px;
   border-top-right-radius:18px;
@@ -216,6 +210,7 @@ a:hover{
   border-top-left-radius:18px;
   border-bottom-left-radius:18px;
 }
+
 .recommandStore{
   height:133px;
   width:980px;
@@ -223,6 +218,7 @@ a:hover{
   margin-top:10px;
   box-sizing:border-box;
 }
+
 .recommandStore ul {
   padding:0;
   margin:0;
@@ -290,6 +286,11 @@ a:hover{
 
       return {
         hotgoods:[],
+        ad_swiperOption:{
+            autoplay:10000,
+            loop:true,
+            autoplayDisableOnInteraction:false  
+        },
         swiperOption: {
           pagination: '.swiper-pagination',
           paginationClickable: true,
@@ -304,6 +305,11 @@ a:hover{
     created(){
       this.getBanner(),
       this.getHotgoods()
+    },
+    computed:{
+      swiper(){
+      return this.$refs.mySwiper.swiper;
+        }
     },
     methods:{
       getBanner(){
@@ -325,9 +331,15 @@ a:hover{
         }).catch((err)=>{
         console.log(err)
         })
-      }
+      },
+      goprev(){
+        this.swiper.slidePrev();
+    },
+    gonext(){
+        this.swiper.slideNext();
     }
-    
+
+    }
 
   }
 
